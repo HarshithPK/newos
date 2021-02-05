@@ -1,0 +1,31 @@
+body {
+    background-color: #042940;
+}
+
+.App {
+    display: flex !important; 
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.individual-astroid-data-text {
+    color: white;
+}
+
+.title {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.content-tab-1 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.content-tab-2 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
