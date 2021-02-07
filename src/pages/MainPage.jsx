@@ -27,7 +27,10 @@ function MainPage() {
 
   return (
     <div>
-      <h1 className="title border-bottom border-top mt-3 w-50" style={{ color:"white" }}>NEWOS</h1>
+
+      <div className="title-section mt-2">
+        <h1 className="title">NEWOS</h1>
+      </div>
 
       <div className="content-tab-1 mt-3">
         <DatePicker
@@ -69,7 +72,7 @@ function MainPage() {
             endDate
           )}`}
         >
-          <button type="button" className="btn btn-primary btn-sm mt-1">
+          <button type="button" className="btn btn-success btn-sm mt-1">
             {" "}
             Search{" "}
           </button>
@@ -90,7 +93,7 @@ function MainPage() {
         <br></br>
         <Link
           to={`/search-astroid-id/${searchAstroid}`}
-          className="btn btn-primary btn-sm mt-1 mb-2"
+          className="btn btn-success btn-sm mt-1 mb-2"
         >
           Search
         </Link>

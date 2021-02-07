@@ -24,7 +24,7 @@ export default class SearchAstroidById extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="search-id-section mt-5">
                 {this.state.loading ?
                 <div>
                     <div className="spinner-border text-warning" role="status">

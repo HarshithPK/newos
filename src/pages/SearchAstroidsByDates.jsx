@@ -68,7 +68,7 @@ export default class SearchAstroidDates extends React.Component {
 
         {!this.state.show && (
           <Button
-            className="btn btn-primary btn-sm mt-2"
+            className="btn btn-primary align-middle mt-2"
             onClick={this.handleClick}
           >
             {this.state.addingAstroidsLoading
@@ -197,9 +197,9 @@ export default class SearchAstroidDates extends React.Component {
     const { selectedRowKeys } = this.state;
 
     return (
-      <div>
+      <div className="justify-content-center">
         {this.state.loading ? (
-          <div>
+          <div className="justify-content-center">
             <div className="spinner-border text-warning" role="status">
               <span className="sr-only"></span>
             </div>
@@ -208,6 +208,7 @@ export default class SearchAstroidDates extends React.Component {
           <div>
             <DataGrid
               id="id"
+              className="mt-5"
               dataSource={astroidArray}
               showBorders={true}
               keyExpr="id"

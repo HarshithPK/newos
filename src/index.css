@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
 body {
-    background-color: #042940;
+    background-color: #042940;    
+    background-image: url(./images/14-147180_hd-deep-blue-space-wallpaper-high-resolution-space.jpg);
+    margin: 0;
+    padding: 0;
 }
 
-.App {
-    display: flex !important; 
-    justify-content: center !important;
-    align-items: center !important;
+.title {
+    padding-top: 10px;
+}
+
+.title-section {
+    border: 3px solid #f8f8f8;
+    border-style: inset;
+    background-color: #22287e54;
+    color: #fff;
+    font-family: 'Aclonica', sans-serif;
 }
 
 .individual-astroid-data-text {
@@ -19,13 +30,27 @@ body {
 }
 
 .content-tab-1 {
+    border: 3px solid #8d97b6;
+    border-style: inset;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fff;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
 }
 
 .content-tab-2 {
+    border: 3px solid #8d97b6;
+    border-style: inset;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fff;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.search-id-section {
     text-align: center;
 }
