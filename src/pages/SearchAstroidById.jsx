@@ -32,10 +32,28 @@ export default class SearchAstroidById extends React.Component {
                 </div>
                 </div> :
                 <div className="individual-astroid-data-text">
-                <h1>ID:{this.state.astroidData.id}</h1>
-                <h1>Name:{this.state.astroidData.name}</h1>
-                <h1>Diameter:{this.state.astroidData.estimated_diameter.kilometers.estimated_diameter_max}</h1>
-                <h1>Orbital Determination date:{this.state.astroidData.orbital_data.orbit_determination_date}</h1>
+                    <center>
+                        <table className="individual-astroid-table">
+                            <tbody>
+                                <tr>
+                                    <th>Astroid ID</th>
+                                    <td>{this.state.astroidData.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{this.state.astroidData.name}</td>
+                                </tr> 
+                                <tr>
+                                    <th>Diameter</th>
+                                    <td>{this.state.astroidData.estimated_diameter.kilometers.estimated_diameter_max}</td>
+                                </tr> 
+                                <tr>
+                                    <th>Orbital Determination date</th>
+                                    <td>{this.state.astroidData.orbital_data.orbit_determination_date}</td>
+                                </tr>  
+                            </tbody>    
+                        </table>
+                    </center>
                 </div>}
             </div>            
         );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
 import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.light.css";
+import "devextreme/dist/css/dx.material.blue.dark.css";
 import DataGrid, {
   Column,
   Paging,
@@ -98,10 +98,6 @@ export default class SearchAstroidDates extends React.Component {
 
       favouriteAstroidArray.push(elementsToPush);
     });
-
-    // console.log(favouriteAstroidArray, "Printing Favourite Astroid Array");
-    // console.log(favouriteAstroidArray[0].astroidName);
-    // console.log(this.state.currentUser.displayName);
 
     const favourites = {
       username: this.state.currentUser.displayName,
@@ -205,7 +201,7 @@ export default class SearchAstroidDates extends React.Component {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="mb-5">
             <DataGrid
               id="id"
               className="mt-5"
@@ -218,7 +214,7 @@ export default class SearchAstroidDates extends React.Component {
             >
               <Selection mode="multiple" />
 
-              <Paging defaultPageSize={15} />
+              <Paging defaultPageSize={10} />
 
               <Column
                 dataField="approachDate"

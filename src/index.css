@@ -19,8 +19,24 @@ body {
     font-family: 'Aclonica', sans-serif;
 }
 
-.individual-astroid-data-text {
-    color: white;
+.search-id-section {
+    justify-content: center;
+}
+
+.individual-astroid-table, th, td {
+    background-color: rgb(46, 44, 44);
+    border: 1px solid #8d97b6;
+    padding: 2%;
+    font-size: 1.5rem;
+}
+
+th {
+    color:#d62121 !important;
+}
+
+td {
+    color: #ffffff;
+    text-align: center;
 }
 
 .title {
@@ -34,7 +50,7 @@ body {
     border-style: inset;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -45,7 +61,7 @@ body {
     border-style: inset;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -53,4 +69,19 @@ body {
 
 .search-id-section {
     text-align: center;
+}
+
+.dx-datagrid-text-content {
+    color: #d62121 !important;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.dashboard {
+    justify-content: center;
+}
+
+.user-info {
+    background-color: #414246af;
+    color: white;
 }

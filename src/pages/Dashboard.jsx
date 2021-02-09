@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Card, Button, Alert } from "react-bootstrap";
+import { Card, Alert } from "react-bootstrap";
 import DataGrid, { Column, Paging } from 'devextreme-react/data-grid';
 import axios from 'axios';
 
@@ -75,30 +75,30 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="dashboard w-100 d-flex allign-items-center justify-content-center">
+        <div className="dashboard mt-5 mb-5">
             {loading ? 
             <div>
                 <div className="spinner-border text-warning" role="status">
                     <span className="sr-only"></span>
                 </div>
             </div> : 
-            <div>
+            <div className="">
                 <div className="profile-card w-100" style={{ maxWidth: "400px" }}>
-                    <Card>
-                        <Card.Body className="text-center mb-1">
+                    <Card className="user-info">
+                        <Card.Body className="text-center">
                             <h2 className="text-center mb-4">Profile</h2>
                             {error && <Alert variant="danger">{error}</Alert>}
-                            <strong>Name:</strong> {currentUser.displayName}
+                            <strong>Username:</strong> {currentUser.displayName}
                             <br></br>
                             <strong>Email:</strong> {currentUser.email}
                             <br></br>
                             <Link to="/update-profile" className="btn btn-outline-primary w-72 mt-3">Update Profile</Link>
                         </Card.Body>
                         <div className="w-100 text-center mb-2">
-                            <Button varient="link" onClick={deleteUser}>Delete Account</Button>
+                            <button className="btn btn-outline-danger" onClick={deleteUser}>Delete Account</button>
                         </div>
                         <div className="w-100 text-center mb-2">
-                            <Button varient="link" onClick={handleLogout}>Log Out</Button>
+                            <button className="btn btn-outline-danger" onClick={handleLogout}>Log Out</button>
                         </div>
                     </Card>
                 </div>
