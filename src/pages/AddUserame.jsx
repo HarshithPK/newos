@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Card, Form, Button, Alert } from "react-bootstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 import { useAuth } from "../components/contexts/AuthContext";
 
@@ -46,8 +46,8 @@ export default function AddUsername() {
     }
 
     return (
-        <>
-            <Card>
+        <div className="add-username mt-5 w-100">
+            <Card className="add-username-body">
                 <Card.Body>
                     <h2 className="text-center mb-4">Add Username</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -56,10 +56,10 @@ export default function AddUsername() {
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="text" ref={usernameRef} placeholder="Enter your name" />
                         </Form.Group>
-                        <Button className="w-100" type="submit" disabled={loading}>Update</Button>
+                        <button className="w-100 btn btn-outline-primary" type="submit" disabled={loading}>Update</button>
                     </Form>
                 </Card.Body>
             </Card>
-        </>
+        </div>
     )
 }

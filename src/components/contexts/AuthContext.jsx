@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from "../auth/firebase";
 
@@ -45,7 +46,19 @@ export default function AuthProvider({ children }) {
     }
 
     function deleteUser() {
-        return currentUser.delete();
+        const username = currentUser.displayName;
+
+        const user = {
+            username: username
+        }
+
+        axios.post("https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/deleteUser", user)
+        .then((res) => {
+             console.log("User Deleted");
+             return currentUser.delete();
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     function updateUsername(name) {

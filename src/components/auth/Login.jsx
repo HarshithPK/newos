@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Card, Form, Button, Alert } from "react-bootstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
+
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
@@ -28,8 +29,8 @@ export default function Login() {
     }
 
     return (
-        <div className="login w-100" style={{ maxWidth: "400px" }}>
-            <Card>
+        <div className="login mt-5 w-100">
+            <Card className="login-card">
                 <Card.Body>
                     <h2 className="text-center mb-4">Login</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -43,7 +44,7 @@ export default function Login() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" required ref={passwordRef} />
                         </Form.Group>
-                        <Button className="w-100" type="submit" disabled={loading}>Login</Button>
+                        <button className="w-100 mt-1 btn btn-outline-primary" type="submit" disabled={loading}>Login</button>
                     </Form>
                     <div className="w-100 text-center mt-3">
                         <Link to="/forgot-password">Forgot Password?</Link>

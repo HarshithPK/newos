@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <div className="">
+        <div className="app-body">
           <Router>
           <AuthProvider>
             <Switch>

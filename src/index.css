@@ -7,6 +7,16 @@ body {
     padding: 0;
 }
 
+.App {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-body {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .title {
     padding-top: 10px;
 }
@@ -71,6 +81,10 @@ td {
     text-align: center;
 }
 
+.dx-datagrid {
+    min-width: 800px;
+}
+
 .dx-datagrid-text-content {
     color: #d62121 !important;
     font-weight: bold;
@@ -84,4 +98,54 @@ td {
 .user-info {
     background-color: #414246af;
     color: white;
+}
+
+.login {
+    max-width: 400px;
+    justify-content: center;
+}
+
+.login-card {
+    background-color: #414246af;
+    color: #ffffff;
+}
+
+.signup {
+    max-width: 400px;
+    justify-content: center;
+}
+
+.signup-card {
+    background-color: #414246af;
+    color: #ffffff;
+}
+
+.update-profile {
+    max-width: 400px;
+    justify-content: center;
+}
+
+.update-profile-card {
+    background-color: #414246af;
+    color: #ffffff;
+}
+
+.add-username {
+    max-width: 400px;
+    justify-content: center;
+}
+
+.add-username-body {
+    background-color: #414246af;
+    color: #ffffff;
+}
+
+.forgot-password {
+    max-width: 400px;
+    justify-content: center;
+}
+
+.forgot-password-card {
+    background-color: #414246af;
+    color: #ffffff;
 }

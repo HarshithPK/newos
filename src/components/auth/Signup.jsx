@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Card, Form, Button, Alert } from "react-bootstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from "../contexts/AuthContext";
 
@@ -38,8 +38,8 @@ export default function Signup() {
     }
 
     return (
-        <div className="signup w-100" style={{ maxWidth: "400px" }}>
-            <Card>
+        <div className="signup mt-5 w-100">
+            <Card className="signup-card">
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -58,7 +58,7 @@ export default function Signup() {
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" required ref={passwordConfirmRef} />
                         </Form.Group>
-                        <Button className="w-100" type="submit" disabled={loading}>Sign Up</Button>
+                        <button className="w-100 btn btn-outline-primary" type="submit" disabled={loading}>Sign Up</button>
                     </Form>
                 </Card.Body>
             </Card>
