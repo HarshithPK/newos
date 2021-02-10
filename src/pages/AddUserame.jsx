@@ -46,20 +46,22 @@ export default function AddUsername() {
     }
 
     return (
-        <div className="add-username mt-5 w-100">
-            <Card className="add-username-body">
-                <Card.Body>
-                    <h2 className="text-center mb-4">Add Username</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={ handleSubmit }>
-                        <Form.Group id="username">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" ref={usernameRef} placeholder="Enter your name" />
-                        </Form.Group>
-                        <button className="w-100 btn btn-outline-primary" type="submit" disabled={loading}>Update</button>
-                    </Form>
-                </Card.Body>
-            </Card>
-        </div>
+        <center>
+            <div className="add-username mt-5 w-100">
+                <Card className="add-username-body">
+                    <Card.Body>
+                        <h2 className="text-center mb-4">Add Username</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={ handleSubmit }>
+                            <Form.Group id="username">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control type="text" ref={usernameRef} placeholder="Enter your name" />
+                            </Form.Group>
+                            <button className="w-100 btn btn-outline-primary" type="submit" disabled={loading}>Update</button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </div>
+        </center>
     )
 }

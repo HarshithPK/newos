@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Card, Form, Button, Alert } from "react-bootstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from "../components/contexts/AuthContext";
 
@@ -47,37 +47,39 @@ export default function UpdateProfile() {
     }
 
     return (
-        <div className="update-profile mt-5 w-100">
-            <Card className="update-profile-card">
-                <Card.Body>
-                    <h2 className="text-center mb-4">Update Profile</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={ handleSubmit }>
-                        <Form.Group id="username">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" ref={usernameRef} placeholder="Enter your name" />
-                        </Form.Group>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" required ref={emailRef} defaultValue={currentUser.email} />
-                        </Form.Group>
+        <center>
+            <div className="update-profile mt-5 w-100">
+                <Card className="update-profile-card">
+                    <Card.Body>
+                        <h2 className="text-center mb-4">Update Profile</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={ handleSubmit }>
+                            <Form.Group id="username">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control type="text" ref={usernameRef} placeholder="Enter your name" />
+                            </Form.Group>
+                            <Form.Group id="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" required ref={emailRef} defaultValue={currentUser.email} />
+                            </Form.Group>
 
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} placeholder="Leave Blank to keep the same." />
-                        </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" ref={passwordRef} placeholder="Leave Blank to keep the same." />
+                            </Form.Group>
 
-                        <Form.Group id="password-confirm">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave Blank to keep the same." />
-                        </Form.Group>
-                        <Button className="w-100" type="submit" disabled={loading}>Update</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                <Link to="/">Cancel</Link>
+                            <Form.Group id="password-confirm">
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave Blank to keep the same." />
+                            </Form.Group>
+                            <button className="btn btn-outline-primary w-100" type="submit" disabled={loading}>Update</button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                <div className="w-100 text-center mt-2">
+                    <Link className="btn btn-outline-primary" to="/">Cancel</Link>
+                </div>
             </div>
-        </div>
+        </center>
     )
 }

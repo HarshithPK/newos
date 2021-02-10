@@ -1,4 +1,9 @@
 import React from "react";
+import axios from "axios";
+import { Alert } from "react-bootstrap";
+import Button from "devextreme-react/button";
+
+let favouriteAstroidArray = [];
 
 export default class SearchAstroidById extends React.Component {
     constructor(props) {
@@ -6,8 +11,14 @@ export default class SearchAstroidById extends React.Component {
 
         this.state = {
             astroidData: {},
-            loading: true
+            loading: true,
+            addingAstroidsLoading: false,
+            message: "",
+            show: false
         }
+
+        this.AlertDismissible = this.AlertDismissible.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async componentDidMount() {
@@ -21,6 +32,66 @@ export default class SearchAstroidById extends React.Component {
         this.setState({astroidData: data});
         this.setState({loading: false});
     }
+
+    AlertDismissible() {
+        return (
+          <>
+            <Alert show={this.state.show} variant="success">
+              <Alert.Heading>Success!!</Alert.Heading>
+              <p>Astroid(s) added to favourites.</p>
+              <hr />
+              <div className="d-flex justify-content-end">
+                <Button
+                  onClick={() => this.setState({ show: false })}
+                  variant="outline-success"
+                >
+                  Close
+                </Button>
+              </div>
+            </Alert>
+    
+            {!this.state.show && (
+              <Button
+                className="btn btn-primary align-middle mt-2"
+                onClick={this.handleClick}
+              >
+                {this.state.addingAstroidsLoading
+                  ? "Loading..."
+                  : "Add to Favourites"}
+              </Button>
+            )}
+          </>
+        );
+    }
+
+    handleClick(event) {
+        this.setState({ addingAstroidsLoading: true });
+    
+        let elementsToPush = {
+            astroidId: this.state.astroidData.id,
+            astroidName: this.state.astroidData.name,
+            astroidApproachDate: this.state.astroidData.close_approach_data[0].close_approach_date,
+        };
+    
+        favouriteAstroidArray.push(elementsToPush);
+    
+        const favourites = {
+          username: this.state.currentUser.displayName,
+          favouriteAstroids: favouriteAstroidArray,
+        };
+    
+        axios.post("https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",favourites)
+          .then((res) => {
+            // console.log(res.data);
+            this.setState({ message: "Astroid(s) added to favourites." });
+            this.setState({ show: true });
+            this.setState({ addingAstroidsLoading: false });
+            this.onClearButtonClicked();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
 
     render () {
         return (
@@ -53,6 +124,7 @@ export default class SearchAstroidById extends React.Component {
                                 </tr>  
                             </tbody>    
                         </table>
+                        {this.AlertDismissible()}
                     </center>
                 </div>}
             </div>            

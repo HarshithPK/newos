@@ -12,7 +12,7 @@ import axios from "axios";
 import { auth } from "../components/auth/firebase";
 
 let astroidData;
-let day, id, name, diameter, velocity, approachDate;
+let day, id, name, diameter, velocity, approachDate, orbitalDeterminationDate;
 let astroidArray = [];
 let favouriteAstroidArray = [];
 
@@ -88,12 +88,12 @@ export default class SearchAstroidDates extends React.Component {
     Object.keys(favouriteAstroids).forEach(function (key) {
       let astroidId = favouriteAstroids[key].id;
       let astroidName = favouriteAstroids[key].name;
-      let approachDate = favouriteAstroids[key].day;
+      let orbitalDeterminationDate = favouriteAstroids[key].orbitalDeterminationDate;
 
       let elementsToPush = {
         astroidId: astroidId,
         astroidName: astroidName,
-        astroidApproachDate: approachDate,
+        orbitalDeterminationDate: orbitalDeterminationDate,
       };
 
       favouriteAstroidArray.push(elementsToPush);
@@ -172,6 +172,7 @@ export default class SearchAstroidDates extends React.Component {
             .kilometers_per_hour;
         approachDate =
           individualAstroid.close_approach_data[0].close_approach_date;
+        orbitalDeterminationDate = individualAstroid.orbital_data.orbit_determination_date
 
         let elementToPush = {
           day: day,
@@ -180,6 +181,7 @@ export default class SearchAstroidDates extends React.Component {
           diameter: diameter,
           velocity: velocity,
           approachDate: approachDate,
+          orbitalDeterminationDate: orbitalDeterminationDate
         };
 
         astroidArray.push(elementToPush);
@@ -223,7 +225,16 @@ export default class SearchAstroidDates extends React.Component {
                 caption="Approach Date"
                 alignment="center"
               />
-              <Column dataField="id" caption="Astroid Id" alignment="center" />
+              <Column
+                dataField="orbitalDeterminationDate"
+                caption="Determination Date"
+                alignment="center"
+              />
+              <Column 
+                dataField="id" 
+                caption="Astroid Id" 
+                alignment="center" 
+              />
               <Column
                 dataField="name"
                 caption="Astroid Name"

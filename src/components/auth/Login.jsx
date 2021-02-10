@@ -29,31 +29,35 @@ export default function Login() {
     }
 
     return (
-        <div className="login mt-5 w-100">
-            <Card className="login-card">
-                <Card.Body>
-                    <h2 className="text-center mb-4">Login</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={ handleSubmit }>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" required ref={emailRef} />
-                        </Form.Group>
+        <center>
+            <div className="login mt-5 w-100">
+                
+                <Card className="login-card">
+                    <Card.Body>
+                        <h2 className="text-center mb-4">Login</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={ handleSubmit }>
+                            <Form.Group id="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" required ref={emailRef} />
+                            </Form.Group>
 
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" required ref={passwordRef} />
-                        </Form.Group>
-                        <button className="w-100 mt-1 btn btn-outline-primary" type="submit" disabled={loading}>Login</button>
-                    </Form>
-                    <div className="w-100 text-center mt-3">
-                        <Link to="/forgot-password">Forgot Password?</Link>
-                    </div>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2" style={{ color:'white' }}>
-                Need an account? <Link to="/signup">Sign Up</Link>
+                            <Form.Group id="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" required ref={passwordRef} />
+                            </Form.Group>
+                            <button className="w-100 mt-1 btn btn-outline-primary" type="submit" disabled={loading}>Login</button>
+                        </Form>
+                        <div className="w-100 text-center mt-3">
+                            <Link to="/forgot-password">Forgot Password?</Link>
+                        </div>
+                    </Card.Body>
+                </Card>
+                <div className="w-100 text-center mt-2" style={{ color:'white' }}>
+                    Need an account? <Link to="/signup">Sign Up</Link>
+                </div>
+                
             </div>
-        </div>
+        </center>
     )
 }

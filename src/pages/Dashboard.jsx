@@ -49,7 +49,7 @@ export default function Dashboard() {
                     const elementsToPush = {
                         astroidId: level1[key1].astroidId,
                         astroidName: level1[key1].astroidName,
-                        astroidApproachDate: level1[key1].astroidApproachDate
+                        orbitalDeterminationDate: level1[key1].orbitalDeterminationDate
                     }
 
                     favouriteAstroidArray.push(elementsToPush);
@@ -75,47 +75,62 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="dashboard mt-5 mb-5">
-            {loading ? 
-            <div>
-                <div className="spinner-border text-warning" role="status">
-                    <span className="sr-only"></span>
-                </div>
-            </div> : 
-            <div className="">
-                <div className="profile-card w-100" style={{ maxWidth: "400px" }}>
-                    <Card className="user-info">
-                        <Card.Body className="text-center">
-                            <h2 className="text-center mb-4">Profile</h2>
-                            {error && <Alert variant="danger">{error}</Alert>}
-                            <strong>Username:</strong> {currentUser.displayName}
-                            <br></br>
-                            <strong>Email:</strong> {currentUser.email}
-                            <br></br>
-                            <Link to="/update-profile" className="btn btn-outline-primary w-72 mt-3">Update Profile</Link>
-                        </Card.Body>
-                        <div className="w-100 text-center mb-2">
-                            <button className="btn btn-outline-danger" onClick={deleteUser}>Delete Account</button>
-                        </div>
-                        <div className="w-100 text-center mb-2">
-                            <button className="btn btn-outline-danger" onClick={handleLogout}>Log Out</button>
-                        </div>
-                    </Card>
-                </div>
-                <DataGrid className="mt-5"
-                    id="astroidId"
-                    dataSource={favouriteAstroidArray}
-                    showBorders={true}
-                    keyExpr="astroidId"
-                >
-                    <Paging defaultPageSize={5} />
-        
-                    <Column dataField="astroidApproachDate"  defaultSortIndex={1} defaultSortOrder="asc" caption="Approach Date" alignment="center"/>
-                    <Column dataField="astroidId"  caption="Astroid Id" alignment="center"/>
-                    <Column dataField="astroidName"  caption="Astroid Name" alignment="center"/>
-    
-                </DataGrid>
-            </div>}
-        </div>
+        <center>
+            <div className="dashboard mt-5 mb-5">
+                {loading ? 
+                <div>
+                    <div className="spinner-border text-warning" role="status">
+                        <span className="sr-only"></span>
+                    </div>
+                </div> : 
+                <div className="">
+                    <div className="profile-card w-100" style={{ maxWidth: "400px" }}>
+                        <Card className="user-info">
+                            <Card.Body className="text-center">
+                                <h2 className="text-center mb-4">Profile</h2>
+                                {error && <Alert variant="danger">{error}</Alert>}
+                                <strong>Username:</strong> {currentUser.displayName}
+                                <br></br>
+                                <strong>Email:</strong> {currentUser.email}
+                                <br></br>
+                                <Link to="/update-profile" className="btn btn-outline-primary w-72 mt-3">Update Profile</Link>
+                            </Card.Body>
+                            <div className="w-100 text-center mb-2">
+                                <button className="btn btn-outline-danger" onClick={deleteUser}>Delete Account</button>
+                            </div>
+                            <div className="w-100 text-center mb-2">
+                                <button className="btn btn-outline-danger" onClick={handleLogout}>Log Out</button>
+                            </div>
+                        </Card>
+                    </div>
+                    <DataGrid className="mt-5"
+                        id="astroidId"
+                        dataSource={favouriteAstroidArray}
+                        showBorders={true}
+                        keyExpr="astroidId"
+                    >
+                        <Paging defaultPageSize={5} />
+            
+                        <Column 
+                            dataField="orbitalDeterminationDate"  
+                            defaultSortIndex={1} 
+                            defaultSortOrder="asc" 
+                            caption="Determination Date" 
+                            alignment="center"
+                        />
+                        <Column 
+                            dataField="astroidId"  
+                            caption="Astroid Id" 
+                            alignment="center"
+                        />
+                        <Column 
+                            dataField="astroidName"  
+                            caption="Astroid Name" 
+                            alignment="center"
+                        />
+                    </DataGrid>
+                </div>}
+            </div>
+        </center>
     )
 }
