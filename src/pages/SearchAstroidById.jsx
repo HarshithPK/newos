@@ -3,6 +3,8 @@ import axios from "axios";
 import { Alert } from "react-bootstrap";
 import Button from "devextreme-react/button";
 
+import { auth } from "../components/auth/firebase";
+
 let favouriteAstroidArray = [];
 
 export default class SearchAstroidById extends React.Component {
@@ -13,6 +15,7 @@ export default class SearchAstroidById extends React.Component {
             astroidData: {},
             loading: true,
             addingAstroidsLoading: false,
+            currentUser: auth.currentUser,
             message: "",
             show: false
         }
@@ -35,7 +38,7 @@ export default class SearchAstroidById extends React.Component {
 
     AlertDismissible() {
         return (
-          <>
+          <div className="mt2" style={{ maxWidth: "300px" }}>
             <Alert show={this.state.show} variant="success">
               <Alert.Heading>Success!!</Alert.Heading>
               <p>Astroid(s) added to favourites.</p>
@@ -60,7 +63,7 @@ export default class SearchAstroidById extends React.Component {
                   : "Add to Favourites"}
               </Button>
             )}
-          </>
+          </div>
         );
     }
 

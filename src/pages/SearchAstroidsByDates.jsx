@@ -51,7 +51,7 @@ export default class SearchAstroidDates extends React.Component {
 
   AlertDismissible() {
     return (
-      <>
+      <div>
         <Alert show={this.state.show} variant="success">
           <Alert.Heading>Success!!</Alert.Heading>
           <p>Astroid(s) added to favourites.</p>
@@ -76,7 +76,7 @@ export default class SearchAstroidDates extends React.Component {
               : "Add to Favourites"}
           </Button>
         )}
-      </>
+      </div>
     );
   }
 
@@ -195,74 +195,76 @@ export default class SearchAstroidDates extends React.Component {
     const { selectedRowKeys } = this.state;
 
     return (
-      <div className="justify-content-center">
-        {this.state.loading ? (
-          <div className="justify-content-center">
-            <div className="spinner-border text-warning" role="status">
-              <span className="sr-only"></span>
+      <center>
+        <div className="justify-content-center">
+          {this.state.loading ? (
+            <div className="justify-content-center">
+              <div className="spinner-border text-warning" role="status">
+                <span className="sr-only"></span>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="mb-5">
-            <DataGrid
-              id="id"
-              className="mt-5"
-              dataSource={astroidArray}
-              showBorders={true}
-              keyExpr="id"
-              onSelectionChanged={this.onSelectionChanged}
-              ref={(ref) => (this.dataGrid = ref)}
-              selectedRowKeys={selectedRowKeys}
-            >
-              <Selection mode="multiple" />
+          ) : (
+            <div className="mb-5">
+              <DataGrid
+                id="id"
+                className="mt-5"
+                dataSource={astroidArray}
+                showBorders={true}
+                keyExpr="id"
+                onSelectionChanged={this.onSelectionChanged}
+                ref={(ref) => (this.dataGrid = ref)}
+                selectedRowKeys={selectedRowKeys}
+              >
+                <Selection mode="multiple" />
 
-              <Paging defaultPageSize={10} />
+                <Paging defaultPageSize={10} />
 
-              <Column
-                dataField="approachDate"
-                defaultSortIndex={1}
-                defaultSortOrder="asc"
-                caption="Approach Date"
-                alignment="center"
-              />
-              <Column
-                dataField="orbitalDeterminationDate"
-                caption="Determination Date"
-                alignment="center"
-              />
-              <Column 
-                dataField="id" 
-                caption="Astroid Id" 
-                alignment="center" 
-              />
-              <Column
-                dataField="name"
-                caption="Astroid Name"
-                alignment="center"
-              />
-              <Column
-                dataField="diameter"
-                caption="Astroid Diameter(kms)"
-                alignment="center"
-              />
-              <Column
-                dataField="velocity"
-                caption="Astroid Velocity"
-                alignment="center"
-              />
-            </DataGrid>
-            <div className="d-flex justify-content-between border-top border-dark">
-              <Button
-                className="mt-2 btn btn-info btn-sm"
-                disabled={!selectedRowKeys.length}
-                onClick={this.onClearButtonClicked}
-                text="Clear Selection"
-              />
-              {this.AlertDismissible()}
+                <Column
+                  dataField="approachDate"
+                  defaultSortIndex={1}
+                  defaultSortOrder="asc"
+                  caption="Approach Date"
+                  alignment="center"
+                />
+                <Column
+                  dataField="orbitalDeterminationDate"
+                  caption="Determination Date"
+                  alignment="center"
+                />
+                <Column 
+                  dataField="id" 
+                  caption="Astroid Id" 
+                  alignment="center" 
+                />
+                <Column
+                  dataField="name"
+                  caption="Astroid Name"
+                  alignment="center"
+                />
+                <Column
+                  dataField="diameter"
+                  caption="Astroid Diameter(kms)"
+                  alignment="center"
+                />
+                <Column
+                  dataField="velocity"
+                  caption="Astroid Velocity"
+                  alignment="center"
+                />
+              </DataGrid>
+              <div className="d-flex justify-content-between border-top border-dark">
+                <Button
+                  className="mt-2 btn btn-info btn-sm"
+                  disabled={!selectedRowKeys.length}
+                  onClick={this.onClearButtonClicked}
+                  text="Clear Selection"
+                />
+                {this.AlertDismissible()}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </center>
     );
   }
 }

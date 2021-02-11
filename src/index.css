@@ -92,6 +92,7 @@ td {
 }
 
 .dashboard {
+    font-size: 1.2rem;
     justify-content: center;
 }
 
@@ -148,4 +149,9 @@ td {
 .forgot-password-card {
     background-color: #414246af;
     color: #ffffff;
+}
+
+.profile-text {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
 }

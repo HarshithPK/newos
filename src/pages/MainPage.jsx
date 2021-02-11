@@ -82,15 +82,16 @@ function MainPage() {
       <div className="content-tab-2 mt-4">
         <input
           className="astroid-id-text mt-2 mr-2"
+          id="astroid"
           data-bs-toggle="popover"
           data-bs-trigger="focus"
           title="Enter Astroid Id"
           onChange={(e) => setSearchAstroid(e.target.value)}
           type="text"
-          id="astroidID"
           placeholder="Enter Astroid Id"
         />
         <br></br>
+
         <Link
           to={`/search-astroid-id/${searchAstroid}`}
           className="btn btn-success btn-sm mt-1 mb-2"

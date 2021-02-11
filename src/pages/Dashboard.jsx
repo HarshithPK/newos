@@ -87,7 +87,7 @@ export default function Dashboard() {
                     <div className="profile-card w-100" style={{ maxWidth: "400px" }}>
                         <Card className="user-info">
                             <Card.Body className="text-center">
-                                <h2 className="text-center mb-4">Profile</h2>
+                                <h2 className="profile-text text-center mb-4">Profile</h2>
                                 {error && <Alert variant="danger">{error}</Alert>}
                                 <strong>Username:</strong> {currentUser.displayName}
                                 <br></br>
