@@ -73,7 +73,7 @@ export default class SearchAstroidById extends React.Component {
         let elementsToPush = {
             astroidId: this.state.astroidData.id,
             astroidName: this.state.astroidData.name,
-            astroidApproachDate: this.state.astroidData.close_approach_data[0].close_approach_date,
+            orbitalDeterminationDate: this.state.astroidData.orbital_data.orbit_determination_date
         };
     
         favouriteAstroidArray.push(elementsToPush);
