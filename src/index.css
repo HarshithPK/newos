@@ -97,6 +97,8 @@ td {
 }
 
 .user-info {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: white;
 }
@@ -106,7 +108,14 @@ td {
     justify-content: center;
 }
 
+.login-text {
+    border: 3px solid #dfd766;
+    border-style: inset;
+}
+
 .login-card {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: #ffffff;
 }
@@ -116,7 +125,14 @@ td {
     justify-content: center;
 }
 
+.signup-text {
+    border: 3px solid #dfd766;
+    border-style: inset;
+}
+
 .signup-card {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: #ffffff;
 }
@@ -127,8 +143,15 @@ td {
 }
 
 .update-profile-card {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: #ffffff;
+}
+
+.update-profile-text {
+    border: 3px solid #dfd766;
+    border-style: inset;
 }
 
 .add-username {
@@ -137,8 +160,15 @@ td {
 }
 
 .add-username-body {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: #ffffff;
+}
+
+.add-username-text {
+    border: 3px solid #dfd766;
+    border-style: inset;
 }
 
 .forgot-password {
@@ -147,11 +177,18 @@ td {
 }
 
 .forgot-password-card {
+    border: 3px solid #a7a6b3;
+    border-style: inset;
     background-color: #414246af;
     color: #ffffff;
 }
 
+.password-reset-text {
+    border: 3px solid #dfd766;
+    border-style: inset;
+}
+
 .profile-text {
-    border: 3px solid #a7a6b3;
+    border: 3px solid #dfd766;
     border-style: inset;
 }

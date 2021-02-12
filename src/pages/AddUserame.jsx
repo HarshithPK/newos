@@ -50,7 +50,7 @@ export default function AddUsername() {
             <div className="add-username mt-5 w-100">
                 <Card className="add-username-body">
                     <Card.Body>
-                        <h2 className="text-center mb-4">Add Username</h2>
+                        <h2 className="add-username-text text-center mb-4">Add Username</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={ handleSubmit }>
                             <Form.Group id="username">

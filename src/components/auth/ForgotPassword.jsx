@@ -32,7 +32,7 @@ export default function ForgotPassword() {
             <div className="forgot-password mt-5 w-100">
                 <Card className="forgot-password-card">
                     <Card.Body>
-                        <h2 className="text-center mb-4">Password Reset</h2>
+                        <h2 className="password-reset-text text-center mb-4">Password Reset</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                         {message && <Alert variant="success">{message}</Alert>}
                         <Form onSubmit={ handleSubmit }>
