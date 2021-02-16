@@ -1,20 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 
 body {
-    background-color: #042940;    
-    background-image: url(./images/14-147180_hd-deep-blue-space-wallpaper-high-resolution-space.jpg);
-    margin: 0;
-    padding: 0;
-}
-
-.App {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.app-body {
-    margin-left: auto;
-    margin-right: auto;
+    background-image: url(./images/space-background.jpg);
 }
 
 .title {
