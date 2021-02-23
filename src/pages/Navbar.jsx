@@ -12,7 +12,7 @@ export default function Navbar() {
             await logout();
             history.push("/login");
         } catch {
-            console.log("Failed to log out.")
+            console.log("Failed to log out.");
         }
     }
 
