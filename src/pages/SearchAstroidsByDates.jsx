@@ -12,20 +12,9 @@ import axios from "axios";
 import { auth } from "../components/auth/firebase";
 
 let astroidData;
-let day, id, name, diameter, velocity, approachDate, orbitalDeterminationDate;
+let day, id, name, diameter, velocity, approachDate, orbitalDeterminationDate, orbitId;
 let astroidArray = [];
 let favouriteAstroidArray = [];
-
-// function returnAstroidData(day, id, name, diameter, velocity, approachDate) {
-//   return {
-//     day: day,
-//     id: id,
-//     name: name,
-//     diameter: diameter,
-//     velocity: velocity,
-//     approachDate: approachDate,
-//   };
-// }
 
 export default class SearchAstroidDates extends React.Component {
   constructor(props) {
@@ -172,7 +161,8 @@ export default class SearchAstroidDates extends React.Component {
             .kilometers_per_hour;
         approachDate =
           individualAstroid.close_approach_data[0].close_approach_date;
-        orbitalDeterminationDate = individualAstroid.orbital_data.orbit_determination_date
+        orbitalDeterminationDate = individualAstroid.orbital_data.orbit_determination_date;
+        orbitId = individualAstroid.orbital_data.orbit_id;
 
         let elementToPush = {
           day: day,
@@ -181,7 +171,8 @@ export default class SearchAstroidDates extends React.Component {
           diameter: diameter,
           velocity: velocity,
           approachDate: approachDate,
-          orbitalDeterminationDate: orbitalDeterminationDate
+          orbitalDeterminationDate: orbitalDeterminationDate,
+          orbitId: orbitId
         };
 
         astroidArray.push(elementToPush);
@@ -214,7 +205,11 @@ export default class SearchAstroidDates extends React.Component {
                 onSelectionChanged={this.onSelectionChanged}
                 ref={(ref) => (this.dataGrid = ref)}
                 selectedRowKeys={selectedRowKeys}
+                wordWrapEnabled={true}
+                rowAlternationEnabled={true}
+                columnAutoWidth={true}
               >
+            
                 <Selection mode="multiple" />
 
                 <Paging defaultPageSize={10} />
@@ -225,31 +220,44 @@ export default class SearchAstroidDates extends React.Component {
                   defaultSortOrder="asc"
                   caption="Approach Date"
                   alignment="center"
+                  columnAutoWidth={true}
+                />
+                <Column
+                  dataField="orbitId"
+                  caption="Orbit Id"
+                  alignment="center"
+                  columnAutoWidth={true}
                 />
                 <Column
                   dataField="orbitalDeterminationDate"
                   caption="Determination Date"
                   alignment="center"
+                  columnAutoWidth={true}
                 />
+                
                 <Column 
                   dataField="id" 
                   caption="Astroid Id" 
-                  alignment="center" 
+                  alignment="center"
+                  columnAutoWidth={true} 
                 />
                 <Column
                   dataField="name"
                   caption="Astroid Name"
                   alignment="center"
+                  columnAutoWidth={true}
                 />
                 <Column
                   dataField="diameter"
                   caption="Astroid Diameter(kms)"
                   alignment="center"
+                  columnAutoWidth={true}
                 />
                 <Column
                   dataField="velocity"
                   caption="Astroid Velocity"
                   alignment="center"
+                  columnAutoWidth={true}
                 />
               </DataGrid>
               <div className="d-flex justify-content-between border-top border-dark">

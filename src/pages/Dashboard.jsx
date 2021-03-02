@@ -108,6 +108,9 @@ export default function Dashboard() {
                         dataSource={favouriteAstroidArray}
                         showBorders={true}
                         keyExpr="astroidId"
+                        wordWrapEnabled={true}
+                        rowAlternationEnabled={true}
+                        showColumnLines={true}
                     >
                         <Paging defaultPageSize={5} />
             

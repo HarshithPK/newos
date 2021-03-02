@@ -4,6 +4,10 @@ body {
     background-image: url(./images/space-background.jpg);
 }
 
+p {
+    text-align: left;
+}
+
 .title {
     padding-top: 10px;
 }
@@ -72,6 +76,12 @@ td {
     min-width: 800px;
 }
 
+.dx-data-row .td  {
+    /* padding-left: 0px;
+    padding-right: 0px; */
+    width: auto;
+}
+
 .dx-datagrid-text-content {
     color: #d62121 !important;
     font-weight: bold;
@@ -96,7 +106,7 @@ td {
 }
 
 .login-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
 
@@ -113,7 +123,7 @@ td {
 }
 
 .signup-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
 
@@ -137,7 +147,7 @@ td {
 }
 
 .update-profile-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
 
@@ -154,7 +164,7 @@ td {
 }
 
 .add-username-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
 
@@ -171,11 +181,12 @@ td {
 }
 
 .password-reset-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
 
 .profile-text {
-    border: 3px solid #dfd766;
+    border: 3px solid #66b2b2;
     border-style: inset;
 }
+

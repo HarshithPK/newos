@@ -33,6 +33,7 @@ function MainPage() {
       </div>
 
       <div className="content-tab-1 mt-3">
+        <p className="ml-2 mr-2">Hello 1</p>
         <DatePicker
           className="date-picker mb-2 "
           data-bs-toggle="popover"
@@ -80,6 +81,7 @@ function MainPage() {
       </div>
 
       <div className="content-tab-2 mt-4">
+        <p className="ml-2 mr-2">Hello 2</p>
         <input
           className="astroid-id-text mt-2 mr-2"
           id="astroid"
