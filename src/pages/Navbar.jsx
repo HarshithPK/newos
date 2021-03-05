@@ -5,7 +5,6 @@ import { useAuth } from "../components/contexts/AuthContext";
 export default function Navbar() {
     const { currentUser, logout } = useAuth();
     const history = useHistory();
-    // const { currentUser } = useAuth();
 
     async function handleLogout() {
         try {

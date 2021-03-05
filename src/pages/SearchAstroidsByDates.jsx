@@ -17,262 +17,267 @@ let astroidArray = [];
 let favouriteAstroidArray = [];
 
 export default class SearchAstroidDates extends React.Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      loading: true,
-      addingAstroidsLoading: false,
-      selectedRowKeys: [],
-      selectedRowsData: {},
-      currentUser: auth.currentUser,
-      message: "",
-      show: false,
-    };
+		this.state = {
+			loading: true,
+			addingAstroidsLoading: false,
+			selectedRowKeys: [],
+			selectedRowsData: {},
+			currentUser: auth.currentUser,
+			message: "",
+			show: false
+		};
 
-    this.populateData = this.populateData.bind(this);
-    this.fetchData = this.fetchData.bind(this);
-    this.onClearButtonClicked = this.onClearButtonClicked.bind(this);
-    this.onSelectionChanged = this.onSelectionChanged.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.AlertDismissible = this.AlertDismissible.bind(this);
-  }
+		this.populateData = this.populateData.bind(this);
+		this.fetchData = this.fetchData.bind(this);
+		this.onClearButtonClicked = this.onClearButtonClicked.bind(this);
+		this.onSelectionChanged = this.onSelectionChanged.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+		this.AlertDismissible = this.AlertDismissible.bind(this);
+	}
 
-  AlertDismissible() {
-    return (
-      <div>
-        <Alert show={this.state.show} variant="success">
-          <Alert.Heading>Success!!</Alert.Heading>
-          <p>Astroid(s) added to favourites.</p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button
-              onClick={() => this.setState({ show: false })}
-              variant="outline-success"
-            >
-              Close
-            </Button>
-          </div>
-        </Alert>
+	AlertDismissible() {
+		return (
+			<div>
+				<Alert show={this.state.show} variant="success">
+					<Alert.Heading>Success!!</Alert.Heading>
+					<p>Astroid(s) added to favourites.</p>
+					<hr/>
 
-        {!this.state.show && (
-          <Button
-            className="btn btn-primary align-middle mt-2"
-            onClick={this.handleClick}
-          >
-            {this.state.addingAstroidsLoading
-              ? "Loading..."
-              : "Add to Favourites"}
-          </Button>
-        )}
-      </div>
-    );
-  }
+					<div className="d-flex justify-content-end">
+						<Button
+							onClick={() => this.setState({ show: false })}
+							variant="outline-success"
+						>
+							Close
+						</Button>
+					</div>
+				</Alert>
 
-  handleClick(event) {
-    this.setState({ addingAstroidsLoading: true });
+				{!this.state.show && (
+					<Button
+						className="btn btn-primary align-middle mt-2"
+						onClick={this.handleClick}
+					>
+						{this.state.addingAstroidsLoading
+						? "Loading..."
+						: "Add to Favourites"}
+					</Button>
+				)}
+			</div>
+		);
+	}
 
-    const favouriteAstroids = this.state.selectedRowsData;
+	handleClick(event) {
+		this.setState({ addingAstroidsLoading: true });
 
-    Object.keys(favouriteAstroids).forEach(function (key) {
-      let astroidId = favouriteAstroids[key].id;
-      let astroidName = favouriteAstroids[key].name;
-      let orbitalDeterminationDate = favouriteAstroids[key].orbitalDeterminationDate;
+		const favouriteAstroids = this.state.selectedRowsData;
 
-      let elementsToPush = {
-        astroidId: astroidId,
-        astroidName: astroidName,
-        orbitalDeterminationDate: orbitalDeterminationDate,
-      };
+		Object.keys(favouriteAstroids).forEach(function (key) {
+			let astroidId = favouriteAstroids[key].id;
+			let astroidName = favouriteAstroids[key].name;
+			let orbitalDeterminationDate = favouriteAstroids[key].orbitalDeterminationDate;
 
-      favouriteAstroidArray.push(elementsToPush);
-    });
+			let elementsToPush = {
+				astroidId: astroidId,
+				astroidName: astroidName,
+				orbitalDeterminationDate: orbitalDeterminationDate
+			};
 
-    const favourites = {
-      username: this.state.currentUser.displayName,
-      favouriteAstroids: favouriteAstroidArray,
-    };
+			favouriteAstroidArray.push(elementsToPush);
+		});
 
-    axios
-      .post(
-        "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
-        favourites
-      )
-      .then((res) => {
-        // console.log(res.data);
-        this.setState({ message: "Astroid(s) added to favourites." });
-        this.setState({ show: true });
-        this.setState({ addingAstroidsLoading: false });
-        this.onClearButtonClicked();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+		const favourites = {
+			username: this.state.currentUser.displayName,
+			favouriteAstroids: favouriteAstroidArray
+		};
 
-  onSelectionChanged({ selectedRowKeys, selectedRowsData }) {
-    this.setState({
-      selectedRowsData,
-      selectedRowKeys,
-    });
-  }
+		axios
+			.post(
+				"https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
+				favourites
+			)
+			.then((res) => {
+				this.setState({ message: "Astroid(s) added to favourites." });
+				this.setState({ show: true });
+				this.setState({ addingAstroidsLoading: false });
+				this.onClearButtonClicked();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 
-  onClearButtonClicked() {
-    this.dataGrid.instance.clearSelection();
-  }
+	onSelectionChanged({ selectedRowKeys, selectedRowsData }) {
+		this.setState({
+			selectedRowsData,
+			selectedRowKeys
+		});
+	}
 
-  componentDidMount() {
-    const apiKey = "8Y2qxegMmSkdHok4yoOjRm9HASPZpTgkQhwcZ6Aj";
-    const startDate = this.props.match.params.startDate;
-    const endDate = this.props.match.params.endDate;
-    this.fetchData(startDate, endDate, apiKey);
-  }
+	onClearButtonClicked() {
+		this.dataGrid.instance.clearSelection();
+	}
 
-  async fetchData(startDate, endDate, apiKey) {
-    const url =
-      "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
-      startDate +
-      "&end_date=" +
-      endDate +
-      "&api_key=" +
-      apiKey +
-      "&detailed=true";
+	componentDidMount() {
+		const apiKey = "8Y2qxegMmSkdHok4yoOjRm9HASPZpTgkQhwcZ6Aj";
+		const startDate = this.props.match.params.startDate;
+		const endDate = this.props.match.params.endDate;
+		this.fetchData(startDate, endDate, apiKey);
+	}
 
-    const response = await fetch(url);
-    const data = await response.json();
+	async fetchData(startDate, endDate, apiKey) {
+		const url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
+					startDate +
+					"&end_date=" +
+					endDate +
+					"&api_key=" +
+					apiKey +
+					"&detailed=true";
 
-    astroidData = data.near_earth_objects;
+		const response = await fetch(url);
+		const data = await response.json();
 
-    this.populateData();
-  }
+		astroidData = data.near_earth_objects;
 
-  populateData() {
-    Object.keys(astroidData).forEach(function (key) {
-      // console.log(key, "Printing Key");
-      astroidData[key].forEach(function (individualAstroid) {
-        day = key;
-        id = individualAstroid.id;
-        name = individualAstroid.name;
-        diameter =
-          individualAstroid.estimated_diameter.kilometers
-            .estimated_diameter_max;
-        velocity =
-          individualAstroid.close_approach_data[0].relative_velocity
-            .kilometers_per_hour;
-        approachDate =
-          individualAstroid.close_approach_data[0].close_approach_date;
-        orbitalDeterminationDate = individualAstroid.orbital_data.orbit_determination_date;
-        orbitId = individualAstroid.orbital_data.orbit_id;
+		this.populateData();
+	}
 
-        let elementToPush = {
-          day: day,
-          id: id,
-          name: name,
-          diameter: diameter,
-          velocity: velocity,
-          approachDate: approachDate,
-          orbitalDeterminationDate: orbitalDeterminationDate,
-          orbitId: orbitId
-        };
+	populateData() {
+		Object.keys(astroidData).forEach(function (key) {
+			astroidData[key].forEach(function (individualAstroid) {
+				day = key;
+				id = individualAstroid.id;
+				name = individualAstroid.name;
+				diameter =
+				individualAstroid.estimated_diameter.kilometers
+				.estimated_diameter_max;
+				velocity =
+				individualAstroid.close_approach_data[0].relative_velocity
+				.kilometers_per_hour;
+				approachDate =
+				individualAstroid.close_approach_data[0].close_approach_date;
+				orbitalDeterminationDate = individualAstroid.orbital_data.orbit_determination_date;
+				orbitId = individualAstroid.orbital_data.orbit_id;
 
-        astroidArray.push(elementToPush);
-      });
-    });
+				let elementToPush = {
+					day: day,
+					id: id,
+					name: name,
+					diameter: diameter,
+					velocity: velocity,
+					approachDate: approachDate,
+					orbitalDeterminationDate: orbitalDeterminationDate,
+					orbitId: orbitId
+				};
 
-    this.setState({ loading: false });
-  }
+				astroidArray.push(elementToPush);
+			});
+		});
 
-  render() {
-    const { selectedRowKeys } = this.state;
+		this.setState({ loading: false });
+	}
 
-    return (
-      <center>
-        <div className="justify-content-center">
-          {this.state.loading ? (
-            <div className="justify-content-center">
-              <div className="spinner-border text-warning" role="status">
-                <span className="sr-only"></span>
-              </div>
-            </div>
-          ) : (
-            <div className="mb-5">
-              <DataGrid
-                id="id"
-                className="mt-5"
-                dataSource={astroidArray}
-                showBorders={true}
-                keyExpr="id"
-                onSelectionChanged={this.onSelectionChanged}
-                ref={(ref) => (this.dataGrid = ref)}
-                selectedRowKeys={selectedRowKeys}
-                wordWrapEnabled={true}
-                rowAlternationEnabled={true}
-                columnAutoWidth={true}
-              >
-            
-                <Selection mode="multiple" />
+	render() {
+		const { selectedRowKeys } = this.state;
 
-                <Paging defaultPageSize={10} />
+		return (
+			<center>
+				<div className="justify-content-center">
+					{this.state.loading ? (
+						<div className="justify-content-center">
+						<div className="spinner-border text-warning" role="status">
+						<span className="sr-only"></span>
+						</div>
+						</div>
+					) : (
+						<div className="mb-5">
+							<DataGrid
+								id="id"
+								className="mt-5"
+								dataSource={astroidArray}
+								showBorders={true}
+								keyExpr="id"
+								onSelectionChanged={this.onSelectionChanged}
+								ref={(ref) => (this.dataGrid = ref)}
+								selectedRowKeys={selectedRowKeys}
+								wordWrapEnabled={true}
+								rowAlternationEnabled={true}
+								columnAutoWidth={true}
+							>
+										
+								<Selection mode="multiple" />
 
-                <Column
-                  dataField="approachDate"
-                  defaultSortIndex={1}
-                  defaultSortOrder="asc"
-                  caption="Approach Date"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-                <Column
-                  dataField="orbitId"
-                  caption="Orbit Id"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-                <Column
-                  dataField="orbitalDeterminationDate"
-                  caption="Determination Date"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-                
-                <Column 
-                  dataField="id" 
-                  caption="Astroid Id" 
-                  alignment="center"
-                  columnAutoWidth={true} 
-                />
-                <Column
-                  dataField="name"
-                  caption="Astroid Name"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-                <Column
-                  dataField="diameter"
-                  caption="Astroid Diameter(kms)"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-                <Column
-                  dataField="velocity"
-                  caption="Astroid Velocity"
-                  alignment="center"
-                  columnAutoWidth={true}
-                />
-              </DataGrid>
-              <div className="d-flex justify-content-between border-top border-dark">
-                <Button
-                  className="mt-2 btn btn-info btn-sm"
-                  disabled={!selectedRowKeys.length}
-                  onClick={this.onClearButtonClicked}
-                  text="Clear Selection"
-                />
-                {this.AlertDismissible()}
-              </div>
-            </div>
-          )}
-        </div>
-      </center>
-    );
-  }
+								<Paging defaultPageSize={10} />
+
+								<Column
+									dataField="approachDate"
+									defaultSortIndex={1}
+									defaultSortOrder="asc"
+									caption="Approach Date"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+
+								<Column
+									dataField="orbitId"
+									caption="Orbit Id"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+
+								<Column
+									dataField="orbitalDeterminationDate"
+									caption="Determination Date"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+												
+								<Column 
+									dataField="id" 
+									caption="Astroid Id" 
+									alignment="center"
+									columnAutoWidth={true} 
+								/>
+
+								<Column
+									dataField="name"
+									caption="Astroid Name"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+
+								<Column
+									dataField="diameter"
+									caption="Astroid Diameter(kms)"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+
+								<Column
+									dataField="velocity"
+									caption="Astroid Velocity"
+									alignment="center"
+									columnAutoWidth={true}
+								/>
+							</DataGrid>
+
+							<div className="d-flex justify-content-between border-top border-dark">
+								<Button
+									className="mt-2 btn btn-info btn-sm"
+									disabled={!selectedRowKeys.length}
+									onClick={this.onClearButtonClicked}
+									text="Clear Selection"
+								/>
+								{this.AlertDismissible()}
+							</div>
+							
+						</div>
+					)}
+				</div>
+			</center>
+		);
+	}
 }

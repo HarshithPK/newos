@@ -79,7 +79,7 @@ export default function Dashboard() {
             <div className="dashboard mt-5 mb-5">
                 {loading ? 
                 <div>
-                    <div className="spinner-border text-warning" role="status">
+                	 <div className="spinner-border text-warning" role="status">
                         <span className="sr-only"></span>
                     </div>
                 </div> : 
