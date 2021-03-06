@@ -1,103 +1,100 @@
-import axios from 'axios';
-import React, { useContext, useState, useEffect } from 'react';
+import axios from "axios";
+import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../auth/firebase";
 
 const AuthContext = React.createContext();
 
 export function useAuth() {
-    return useContext(AuthContext);
+  return useContext(AuthContext);
 }
 
 export default function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(true);
 
-    const [currentUser, setCurrentUser] = useState();
-    const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log(user);
+      setCurrentUser(user);
+      setLoading(false);
+    });
 
-    useEffect(() => {
+    return unsubscribe;
+  }, []);
 
-        const unsubscribe = auth.onAuthStateChanged(user => {
+  function signup(email, password, username) {
+    return auth.createUserWithEmailAndPassword(email, password);
+  }
 
-            console.log(user);
-            setCurrentUser(user);
-            setLoading(false);
+  function login(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
 
-        });
+  function logout() {
+    return auth.signOut();
+  }
 
-        return unsubscribe;
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
 
-    }, [])
+  function updateEmail(email) {
+    return currentUser.updateEmail(email);
+  }
 
-    function signup(email, password, username) {
-        return auth.createUserWithEmailAndPassword(email, password)
-    }
+  function updatePassword(password) {
+    return currentUser.updatePassword(password);
+  }
 
-    function login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password);
-    }
+  function deleteUser() {
+    const username = currentUser.displayName;
 
-    function logout() {
-        return auth.signOut();
-    }
+    const user = {
+      username: username,
+    };
 
-    function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email);
-    }
+    axios
+      .post(
+        "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/deleteUser",
+        user
+      )
+      .then((res) => {
+        console.log("User Deleted");
+        return currentUser.delete();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-    function updateEmail(email) {
-        return currentUser.updateEmail(email);
-    }
+  function updateUsername(name) {
+    return currentUser
+      .updateProfile({
+        displayName: name,
+      })
+      .then(function () {
+        console.log("Username Updated");
+      })
+      .catch(function (error) {
+        console.log("Username update unsuccessful", error);
+      });
+  }
 
-    function updatePassword(password) {
-        return currentUser.updatePassword(password);
-    }
+  const value = {
+    currentUser,
+    login,
+    signup,
+    logout,
+    resetPassword,
+    updateEmail,
+    updatePassword,
+    updateUsername,
+    deleteUser,
+  };
 
-    function deleteUser() {
-
-        const username = currentUser.displayName;
-
-        const user = {
-            username: username
-        }
-
-        axios.post("https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/deleteUser", user)
-            .then((res) => {
-                console.log("User Deleted");
-                return currentUser.delete();
-            }).catch(err => {
-                console.log(err);
-            });
-
-    }
-
-    function updateUsername(name) {
-
-        return currentUser.updateProfile({
-                displayName: name
-            }).then(function() {
-                console.log("Username Updated");
-            }).catch(function(error) {
-                console.log("Username update unsuccessful", error);
-            });
-
-    }
-
-    const value = {
-        currentUser,
-        login,
-        signup,
-        logout,
-        resetPassword,
-        updateEmail,
-        updatePassword,
-        updateUsername,
-        deleteUser
-    }
-
-    return (
-        
-        <AuthContext.Provider value={value}>
-            {!loading && children}
-        </AuthContext.Provider>
-    )
-
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }
