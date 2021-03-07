@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Aclonica&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 
 body {
     background-image: url(./images/space-background.jpg);
 }
 
-p {
-    text-align: left;
+h2 {
+    align-items: center;
 }
 
 .title {
@@ -14,15 +15,10 @@ p {
 }
 
 .title-section {
-    border: 3px solid #f8f8f8;
-    border-style: inset;
-    background-color: #22287e54;
-    color: #fff;
+    border-bottom: 2px #f8f8f8;
+    color: #ffffff;
     font-family: "Aclonica", sans-serif;
-}
-
-.search-id-section {
-    justify-content: center;
+    width: 75%;
 }
 
 .individual-astroid-table,
@@ -197,4 +193,40 @@ td {
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
     font-size: 1.3rem;
+    text-align: justify;
+}
+
+.neo-feed-text {
+    color: #ffffff;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.neo-lookup-text {
+    color: #ffffff;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.astroid-id-text {
+    text-align: center;
+}
+
+.date-picker {
+    text-align: center;
+}
+
+.neo-feed-heading {
+    border-bottom: 1px solid #ffffff;
+    color: #ffffff;
+    width: 75%;
+}
+
+.neo-lookup-heading {
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+    color: #ffffff;
+    width: 75%;
 }

@@ -21,7 +21,7 @@ export default function Navbar() {
             <div>
                 <nav className="navbar navbar-dark bg-dark justify-content-between">
                     <a className="navbar-brand btn btn-dark" href="/">
-                        NEWOS
+                        NeoWs
                     </a>
 
                     {!currentUser ? (
@@ -39,6 +39,7 @@ export default function Navbar() {
                                 href="/dashboard">
                                 {currentUser.displayName}
                             </a>
+
                             <button
                                 className="mr-sm-2 btn btn-outline-danger"
                                 onClick={handleLogout}>

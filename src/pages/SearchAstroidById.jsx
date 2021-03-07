@@ -107,60 +107,66 @@ export default class SearchAstroidById extends React.Component {
 
     render() {
         return (
-            <div className="search-id-section mt-5">
-                {this.state.loading ? (
-                    <div>
-                        <div
-                            className="spinner-border text-warning"
-                            role="status">
-                            <span className="sr-only"></span>
+            <center>
+                <div>
+                    <h2 className="neo-lookup-heading mt-3">Neo - Lookup</h2>
+
+                    {this.state.loading ? (
+                        <div>
+                            <div
+                                className="spinner-border text-warning"
+                                role="status">
+                                <span className="sr-only"></span>
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <div className="individual-astroid-data-text">
-                        <center>
-                            <table className="individual-astroid-table">
-                                <tbody>
-                                    <tr>
-                                        <th>Astroid ID</th>
-                                        <td>{this.state.astroidData.id}</td>
-                                    </tr>
+                    ) : (
+                        <div className="individual-astroid-data-text">
+                            <center>
+                                <table className="individual-astroid-table mt-5">
+                                    <tbody>
+                                        <tr>
+                                            <th>Astroid ID</th>
+                                            <td>{this.state.astroidData.id}</td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Name</th>
-                                        <td>{this.state.astroidData.name}</td>
-                                    </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>
+                                                {this.state.astroidData.name}
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Diameter</th>
-                                        <td>
-                                            {
-                                                this.state.astroidData
-                                                    .estimated_diameter
-                                                    .kilometers
-                                                    .estimated_diameter_max
-                                            }
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <th>Diameter</th>
+                                            <td>
+                                                {
+                                                    this.state.astroidData
+                                                        .estimated_diameter
+                                                        .kilometers
+                                                        .estimated_diameter_max
+                                                }
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Orbital Determination date</th>
-                                        <td>
-                                            {
-                                                this.state.astroidData
-                                                    .orbital_data
-                                                    .orbit_determination_date
-                                            }
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <th>Orbital Determination date</th>
+                                            <td>
+                                                {
+                                                    this.state.astroidData
+                                                        .orbital_data
+                                                        .orbit_determination_date
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                            {this.AlertDismissible()}
-                        </center>
-                    </div>
-                )}
-            </div>
+                                {this.AlertDismissible()}
+                            </center>
+                        </div>
+                    )}
+                </div>
+            </center>
         );
     }
 }

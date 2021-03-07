@@ -30,13 +30,15 @@ function MainPage() {
     }
 
     return (
-        <div>
-            <div className="title-section mt-2">
-                <h1 className="title">NEOWS</h1>
-            </div>
+        <div className="mt-4 mb-4">
+            <center>
+                <div className="title-section mt-2">
+                    <h1 className="title">NEOWS</h1>
+                </div>
+            </center>
 
             <p className="discription-text ml-4 mr-4 mt-4 mb-4">
-                <strong> NeoWs</strong> (Near Earth Object Web Service) is a
+                <strong>NeoWs</strong> (Near Earth Object Web Service) is a
                 RESTful web service for near earth Asteroid information. All the
                 data is from the NASA JPL Asteroid team. JPL manages NASA's
                 Center for Near-Earth Object Studies, which tracks comets and
@@ -54,9 +56,22 @@ function MainPage() {
             </p>
 
             <div className="content-tab-1 mt-3">
-                <h2>Hello 1</h2>
+                <h2 className="text-center">Neo - Feed</h2>
 
-                <p className="ml-2 mr-2">Hello 1</p>
+                <center>
+                    <p className="border-bottom w-50"></p>
+                </center>
+
+                <p className="neo-feed-text ml-4 mr-4">
+                    Neo-Feed is a RESTful web service for near earth Asteroid
+                    information. With NeoWs a user can search for Asteroids
+                    based on their closest approach date to Earth. It takes two
+                    arguments the start date and an end date in the format
+                    YYYY-MM-DD. The max range of the query is 7 days not
+                    including the start date. The query returns data of astroids
+                    by their approach date to earth within the given range of
+                    dates.
+                </p>
 
                 <label>Pick Start Date:</label>
 
@@ -102,7 +117,7 @@ function MainPage() {
                     )}&${formatDate(endDate)}`}>
                     <button
                         type="button"
-                        className="btn btn-success btn-sm mt-1">
+                        className="btn btn-success btn-sm mt-2">
                         {" "}
                         Search{" "}
                     </button>
@@ -110,8 +125,16 @@ function MainPage() {
             </div>
 
             <div className="content-tab-2 mt-4">
-                <h2>Hello 2</h2>
-                <p className="ml-2 mr-2">Hello 2</p>
+                <h2>Neo - Lookup</h2>
+                <center>
+                    <p className="border-bottom w-50"></p>
+                </center>
+                <p className="neo-lookup-text ml-4 mr-4">
+                    Neo-Feed is a RESTful web service for near earth Asteroid
+                    information. With NeoWs a user can search for an Asteroid
+                    using the NASA JPL small body (SPK-ID) ID. The query returns
+                    data on the astroid whose SPK-ID is provided.
+                </p>
                 <label>Enter Astroid Id:</label> <br></br>
                 <input
                     className="astroid-id-text mt-1 mr-2"
@@ -121,12 +144,12 @@ function MainPage() {
                     title="Enter Astroid Id"
                     onChange={(e) => setSearchAstroid(e.target.value)}
                     type="text"
-                    placeholder="Enter Astroid Id"
+                    placeholder="Astroid Id"
                 />
                 <br></br>
                 <Link
                     to={`/search-astroid-id/${searchAstroid}`}
-                    className="btn btn-success btn-sm mt-1 mb-2">
+                    className="btn btn-success btn-sm mt-2 mb-2">
                     Search
                 </Link>
             </div>

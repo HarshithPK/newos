@@ -189,11 +189,13 @@ export default class SearchAstroidDates extends React.Component {
 
         return (
             <center>
-                <div className="justify-content-center">
+                <div>
+                    <h2 className="neo-feed-heading mt-3">Neo - Feed</h2>
+
                     {this.state.loading ? (
-                        <div className="justify-content-center">
+                        <div>
                             <div
-                                className="spinner-border text-warning"
+                                className="spinner-border text-warning mt-5"
                                 role="status">
                                 <span className="sr-only"></span>
                             </div>
@@ -202,7 +204,7 @@ export default class SearchAstroidDates extends React.Component {
                         <div className="mb-5">
                             <DataGrid
                                 id="id"
-                                className="mt-5"
+                                className="mt-4"
                                 dataSource={astroidArray}
                                 showBorders={true}
                                 keyExpr="id"
