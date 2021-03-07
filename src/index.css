@@ -1,193 +1,200 @@
 @import url("https://fonts.googleapis.com/css2?family=Aclonica&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
-  background-image: url(./images/space-background.jpg);
+    background-image: url(./images/space-background.jpg);
 }
 
 p {
-  text-align: left;
+    text-align: left;
 }
 
 .title {
-  padding-top: 10px;
+    padding-top: 10px;
 }
 
 .title-section {
-  border: 3px solid #f8f8f8;
-  border-style: inset;
-  background-color: #22287e54;
-  color: #fff;
-  font-family: "Aclonica", sans-serif;
+    border: 3px solid #f8f8f8;
+    border-style: inset;
+    background-color: #22287e54;
+    color: #fff;
+    font-family: "Aclonica", sans-serif;
 }
 
 .search-id-section {
-  justify-content: center;
+    justify-content: center;
 }
 
 .individual-astroid-table,
 th,
 td {
-  background-color: rgb(46, 44, 44);
-  border: 1px solid #8d97b6;
-  padding: 2%;
-  font-size: 1.5rem;
+    background-color: rgb(46, 44, 44);
+    border: 1px solid #8d97b6;
+    padding: 2%;
+    font-size: 1.5rem;
 }
 
 th {
-  color: #d62121 !important;
+    color: #d62121 !important;
 }
 
 td {
-  color: #ffffff;
-  text-align: center;
+    color: #ffffff;
+    text-align: center;
 }
 
 .title {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .content-tab-1 {
-  border: 3px solid #8d97b6;
-  border-style: inset;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  color: #ffffff;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+    border: 3px solid #8d97b6;
+    border-style: inset;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #ffffff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content-tab-2 {
-  border: 3px solid #8d97b6;
-  border-style: inset;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  color: #ffffff;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+    border: 3px solid #8d97b6;
+    border-style: inset;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #ffffff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search-id-section {
-  text-align: center;
+    text-align: center;
 }
 
 .dx-datagrid {
-  min-width: 800px;
+    min-width: 800px;
 }
 
 .dx-data-row .td {
-  /* padding-left: 0px;
+    /* padding-left: 0px;
     padding-right: 0px; */
-  width: auto;
+    width: auto;
 }
 
 .dx-datagrid-text-content {
-  color: #d62121 !important;
-  font-weight: bold;
-  font-size: larger;
+    color: #d62121 !important;
+    font-weight: bold;
+    font-size: larger;
 }
 
 .dashboard {
-  font-size: 1.2rem;
-  justify-content: center;
+    font-size: 1.2rem;
+    justify-content: center;
 }
 
 .user-info {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: white;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: white;
 }
 
 .login {
-  max-width: 400px;
-  justify-content: center;
+    max-width: 400px;
+    justify-content: center;
 }
 
 .login-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
 }
 
 .login-card {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: #ffffff;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: #ffffff;
 }
 
 .signup {
-  max-width: 400px;
-  justify-content: center;
+    max-width: 400px;
+    justify-content: center;
 }
 
 .signup-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
 }
 
 .signup-card {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: #ffffff;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: #ffffff;
 }
 
 .update-profile {
-  max-width: 400px;
-  justify-content: center;
+    max-width: 400px;
+    justify-content: center;
 }
 
 .update-profile-card {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: #ffffff;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: #ffffff;
 }
 
 .update-profile-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
 }
 
 .add-username {
-  max-width: 400px;
-  justify-content: center;
+    max-width: 400px;
+    justify-content: center;
 }
 
 .add-username-body {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: #ffffff;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: #ffffff;
 }
 
 .add-username-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
 }
 
 .forgot-password {
-  max-width: 400px;
-  justify-content: center;
+    max-width: 400px;
+    justify-content: center;
 }
 
 .forgot-password-card {
-  border: 3px solid #a7a6b3;
-  border-style: inset;
-  background-color: #414246af;
-  color: #ffffff;
+    border: 3px solid #a7a6b3;
+    border-style: inset;
+    background-color: #414246af;
+    color: #ffffff;
 }
 
 .password-reset-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
 }
 
 .profile-text {
-  border: 3px solid #66b2b2;
-  border-style: inset;
+    border: 3px solid #66b2b2;
+    border-style: inset;
+}
+
+.discription-text {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3rem;
 }

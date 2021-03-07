@@ -13,9 +13,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 ReactDOM.render(
-  <AuthProvider>
-    <Navbar />
-    <App />
-  </AuthProvider>,
-  document.getElementById("root")
+    <AuthProvider>
+        <Navbar />
+        <App />
+    </AuthProvider>,
+    document.getElementById("root")
 );
