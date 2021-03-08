@@ -60,7 +60,7 @@ export default class SearchAstroidById extends React.Component {
 
                 {!this.state.show && (
                     <Button
-                        className="btn btn-primary align-middle mt-2"
+                        className="btn btn-primary align-middle mt-3 mb-4"
                         onClick={this.handleClick}>
                         {this.state.addingAstroidsLoading
                             ? "Loading..."
@@ -122,8 +122,21 @@ export default class SearchAstroidById extends React.Component {
                     ) : (
                         <div className="individual-astroid-data-text">
                             <center>
-                                <table className="individual-astroid-table mt-5">
-                                    <tbody>
+                                <p className="neo-lookup-description-text mt-4 ml-4 mr-4">
+                                    The below table shows the details of the
+                                    astroid with the Astroid Id{" "}
+                                    <strong>{this.state.astroidData.id}</strong>{" "}
+                                    and
+                                    <strong>
+                                        {this.props.match.params.endDate}
+                                    </strong>
+                                    . The astroids are ordered based on their
+                                    closest approach date to earth. The astroids
+                                    can be added to favourites to be viewed on a
+                                    later date.
+                                </p>
+                                <table className="individual-astroid-table mt-3">
+                                    <tbody className="ml-2 mr-2">
                                         <tr>
                                             <th>Astroid ID</th>
                                             <td>{this.state.astroidData.id}</td>
@@ -137,13 +150,34 @@ export default class SearchAstroidById extends React.Component {
                                         </tr>
 
                                         <tr>
-                                            <th>Diameter</th>
+                                            <th>Orbit ID</th>
+                                            <td>
+                                                {
+                                                    this.state.astroidData
+                                                        .orbital_data.orbit_id
+                                                }
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Diameter (Kms)</th>
                                             <td>
                                                 {
                                                     this.state.astroidData
                                                         .estimated_diameter
                                                         .kilometers
                                                         .estimated_diameter_max
+                                                }
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>First Observation Date</th>
+                                            <td>
+                                                {
+                                                    this.state.astroidData
+                                                        .orbital_data
+                                                        .first_observation_date
                                                 }
                                             </td>
                                         </tr>
@@ -156,6 +190,26 @@ export default class SearchAstroidById extends React.Component {
                                                         .orbital_data
                                                         .orbit_determination_date
                                                 }
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Inclination</th>
+                                            <td>
+                                                {this.state.astroidData.orbital_data.inclination.substring(
+                                                    0,
+                                                    7
+                                                )}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Orbital Period</th>
+                                            <td>
+                                                {this.state.astroidData.orbital_data.orbital_period.substring(
+                                                    0,
+                                                    7
+                                                )}
                                             </td>
                                         </tr>
                                     </tbody>

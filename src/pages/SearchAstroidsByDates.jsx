@@ -15,7 +15,17 @@ import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.material.blue.dark.css";
 
 let astroidData;
-let day, id, name, diameter, velocity, approachDate, orbitalDeterminationDate;
+let day,
+    id,
+    name,
+    diameter,
+    velocity,
+    approachDate,
+    orbitalDeterminationDate,
+    missDistance,
+    orbitalPeriod,
+    inclination,
+    firstObservationDate;
 let astroidArray = [];
 let favouriteAstroidArray = [];
 
@@ -155,17 +165,28 @@ export default class SearchAstroidDates extends React.Component {
                 day = key;
                 id = individualAstroid.id;
                 name = individualAstroid.name;
-                diameter =
-                    individualAstroid.estimated_diameter.kilometers
-                        .estimated_diameter_max;
-                velocity =
-                    individualAstroid.close_approach_data[0].relative_velocity
-                        .kilometers_per_hour;
+                diameter = individualAstroid.estimated_diameter.kilometers.estimated_diameter_max
+                    .toString()
+                    .substring(0, 7);
+                velocity = individualAstroid.close_approach_data[0].relative_velocity.kilometers_per_hour
+                    .toString()
+                    .substring(0, 9);
                 approachDate =
                     individualAstroid.close_approach_data[0]
                         .close_approach_date;
                 orbitalDeterminationDate =
                     individualAstroid.orbital_data.orbit_determination_date;
+                missDistance = individualAstroid.close_approach_data[0].miss_distance.kilometers
+                    .toString()
+                    .substring(0, 7);
+                orbitalPeriod = individualAstroid.orbital_data.orbital_period
+                    .toString()
+                    .substring(0, 7);
+                inclination = individualAstroid.orbital_data.inclination
+                    .toString()
+                    .substring(0, 7);
+                firstObservationDate =
+                    individualAstroid.orbital_data.first_observation_date;
 
                 let elementToPush = {
                     day: day,
@@ -175,6 +196,10 @@ export default class SearchAstroidDates extends React.Component {
                     velocity: velocity,
                     approachDate: approachDate,
                     orbitalDeterminationDate: orbitalDeterminationDate,
+                    missDistance: missDistance,
+                    orbitalPeriod: orbitalPeriod,
+                    inclination: inclination,
+                    firstObservationDate: firstObservationDate,
                 };
 
                 astroidArray.push(elementToPush);
@@ -201,7 +226,22 @@ export default class SearchAstroidDates extends React.Component {
                             </div>
                         </div>
                     ) : (
-                        <div className="mb-5">
+                        <div className="mt-4 mb-5">
+                            <p className="neo-feed-description-text ml-4 mr-4">
+                                The below table shows a list of astroids on
+                                approach to earth between{" "}
+                                <strong>
+                                    {this.props.match.params.startDate}
+                                </strong>{" "}
+                                and{" "}
+                                <strong>
+                                    {this.props.match.params.endDate}
+                                </strong>
+                                . The astroids are ordered based on their
+                                closest approach date to earth. The astroids can
+                                be selected and then added to favourites to be
+                                viewed on a later date.
+                            </p>
                             <DataGrid
                                 id="id"
                                 className="mt-4"
@@ -210,7 +250,8 @@ export default class SearchAstroidDates extends React.Component {
                                 keyExpr="id"
                                 onSelectionChanged={this.onSelectionChanged}
                                 ref={(ref) => (this.dataGrid = ref)}
-                                selectedRowKeys={selectedRowKeys}>
+                                selectedRowKeys={selectedRowKeys}
+                                wordWrapEnabled={true}>
                                 <Selection mode="multiple" />
 
                                 <Paging defaultPageSize={10} />
@@ -230,6 +271,12 @@ export default class SearchAstroidDates extends React.Component {
                                 />
 
                                 <Column
+                                    dataField="firstObservationDate"
+                                    caption="First Observation Date"
+                                    alignment="center"
+                                />
+
+                                <Column
                                     dataField="id"
                                     caption="Astroid Id"
                                     alignment="center"
@@ -243,20 +290,38 @@ export default class SearchAstroidDates extends React.Component {
 
                                 <Column
                                     dataField="diameter"
-                                    caption="Astroid Diameter(kms)"
+                                    caption="Astroid Diameter (Kms)"
                                     alignment="center"
                                 />
 
                                 <Column
                                     dataField="velocity"
-                                    caption="Astroid Velocity"
+                                    caption="Astroid Velocity (Kph)"
+                                    alignment="center"
+                                />
+
+                                <Column
+                                    dataField="missDistance"
+                                    caption="Astroid Miss-Distance (Kms)"
+                                    alignment="center"
+                                />
+
+                                <Column
+                                    dataField="orbitalPeriod"
+                                    caption="Orbital Period"
+                                    alignment="center"
+                                />
+
+                                <Column
+                                    dataField="inclination"
+                                    caption="Astroid Inclination"
                                     alignment="center"
                                 />
                             </DataGrid>
 
                             <div className="d-flex justify-content-between border-top border-dark">
                                 <Button
-                                    className="mt-2 btn btn-info btn-sm"
+                                    className="mt-2 btn btn-info btn-sm mb-3"
                                     disabled={!selectedRowKeys.length}
                                     onClick={this.onClearButtonClicked}
                                     text="Clear Selection"

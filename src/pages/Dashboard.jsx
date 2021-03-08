@@ -17,7 +17,7 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const { deleteUser, currentUser, logout } = useAuth();
+    const { currentUser, logout } = useAuth();
 
     const history = useHistory();
 
@@ -115,10 +115,15 @@ export default function Dashboard() {
                                     {error && (
                                         <Alert variant="danger">{error}</Alert>
                                     )}
-                                    <strong>Username:</strong>{" "}
+                                    <strong className="label-text">
+                                        Username:
+                                    </strong>{" "}
                                     {currentUser.displayName}
                                     <br></br>
-                                    <strong>Email:</strong> {currentUser.email}
+                                    <strong className="label-text">
+                                        Email:
+                                    </strong>{" "}
+                                    {currentUser.email}
                                     <br></br>
                                     <Link
                                         to="/update-profile"
@@ -128,11 +133,11 @@ export default function Dashboard() {
                                 </Card.Body>
 
                                 <div className="w-100 text-center mb-2">
-                                    <button
-                                        className="btn btn-outline-danger"
-                                        onClick={deleteUser}>
+                                    <Link
+                                        to="/delete-account"
+                                        className="btn btn-outline-danger w-72 mt-3">
                                         Delete Account
-                                    </button>
+                                    </Link>
                                 </div>
 
                                 <div className="w-100 text-center mb-2">

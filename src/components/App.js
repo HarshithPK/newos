@@ -18,6 +18,7 @@ import AddUsername from "../pages/AddUserame";
 import Navbar from "../pages/Navbar";
 import Dashboard from "../pages/Dashboard";
 import UpdateProfile from "../pages/UpdateProfile";
+import DeleteAccount from "../pages/DeleteAccount";
 
 function App() {
     return (
@@ -62,6 +63,11 @@ function App() {
                                     exact
                                     path="/navbar"
                                     component={Navbar}
+                                />
+                                <PrivateRoute
+                                    exact
+                                    path="/delete-account"
+                                    component={DeleteAccount}
                                 />
                                 <Route path="/login" component={Login} />
                                 <Route path="/signup" component={Signup} />

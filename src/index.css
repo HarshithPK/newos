@@ -10,33 +10,37 @@ h2 {
     align-items: center;
 }
 
+table {
+    table-layout: auto;
+}
+
 .title {
     padding-top: 10px;
 }
 
 .title-section {
-    border-bottom: 2px #f8f8f8;
+    border-bottom: 2px solid #f8f8f8;
     color: #ffffff;
     font-family: "Aclonica", sans-serif;
     width: 75%;
 }
 
-.individual-astroid-table,
-th,
-td {
+th {
     background-color: rgb(46, 44, 44);
     border: 1px solid #8d97b6;
-    padding: 2%;
-    font-size: 1.5rem;
-}
-
-th {
     color: #d62121 !important;
+    font-size: 1.5rem;
+    padding: 3%;
 }
 
 td {
+    min-width: 80px;
+    background-color: rgb(46, 44, 44);
+    border: 1px solid #8d97b6;
     color: #ffffff;
     text-align: center;
+    font-size: 1.5rem;
+    padding: 4%;
 }
 
 .title {
@@ -76,8 +80,6 @@ td {
 }
 
 .dx-data-row .td {
-    /* padding-left: 0px;
-    padding-right: 0px; */
     width: auto;
 }
 
@@ -221,6 +223,7 @@ td {
 .neo-feed-heading {
     border-bottom: 1px solid #ffffff;
     color: #ffffff;
+    font-family: "Aclonica", sans-serif;
     width: 75%;
 }
 
@@ -228,5 +231,32 @@ td {
     text-align: center;
     border-bottom: 1px solid #ffffff;
     color: #ffffff;
+    font-family: "Aclonica", sans-serif;
     width: 75%;
+}
+
+.neo-feed-description-text {
+    text-align: left;
+    color: #ffffff;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+.neo-lookup-description-text {
+    text-align: left;
+    color: #ffffff;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+.label-text {
+    color: #ee3131;
+    padding: 1%;
+}
+
+.delete-account-card {
+    border: 3px solid #a7a6b3;
+    background-color: #414246af;
+    border-style: inset;
+    color: #ffffff;
+    margin-top: 10%;
+    width: 60%;
 }

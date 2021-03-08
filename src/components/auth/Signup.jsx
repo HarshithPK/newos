@@ -18,6 +18,17 @@ export default function Signup() {
     async function handleSubmit(event) {
         event.preventDefault();
 
+        console.log(passwordRef.current.value.length);
+
+        if (
+            passwordRef.current.value.length < 6 ||
+            passwordConfirmRef.current.value.length < 6
+        ) {
+            return setError(
+                "Password should be atleast 6 charecters in length"
+            );
+        }
+
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError("Passwords do not match");
         }

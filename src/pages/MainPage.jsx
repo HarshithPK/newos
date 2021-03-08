@@ -130,7 +130,7 @@ function MainPage() {
                     <p className="border-bottom w-50"></p>
                 </center>
                 <p className="neo-lookup-text ml-4 mr-4">
-                    Neo-Feed is a RESTful web service for near earth Asteroid
+                    Neo-Lookup is a RESTful web service for near earth Asteroid
                     information. With NeoWs a user can search for an Asteroid
                     using the NASA JPL small body (SPK-ID) ID. The query returns
                     data on the astroid whose SPK-ID is provided.
