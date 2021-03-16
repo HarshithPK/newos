@@ -1,3 +1,4 @@
+//Library Imports
 import React from "react";
 import { Alert } from "react-bootstrap";
 import DataGrid, {
@@ -8,6 +9,7 @@ import DataGrid, {
 import Button from "devextreme-react/button";
 import axios from "axios";
 
+//Component Imports
 import { auth } from "../components/auth/firebase";
 
 //devexteme CSS
@@ -33,6 +35,7 @@ export default class SearchAstroidDates extends React.Component {
     constructor(props) {
         super(props);
 
+        //State variables
         this.state = {
             loading: true,
             addingAstroidsLoading: false,
@@ -51,6 +54,7 @@ export default class SearchAstroidDates extends React.Component {
         this.AlertDismissible = this.AlertDismissible.bind(this);
     }
 
+    //Dynamic Add to favourites button
     AlertDismissible() {
         return (
             <div>
@@ -82,11 +86,13 @@ export default class SearchAstroidDates extends React.Component {
         );
     }
 
+    //Handle click to add astroids to favourites
     handleClick(event) {
         this.setState({ addingAstroidsLoading: true });
 
         const favouriteAstroids = this.state.selectedRowsData;
 
+        //Preparing astroids' data to be added to favourites
         Object.keys(favouriteAstroids).forEach(function (key) {
             let astroidId = favouriteAstroids[key].id;
             let astroidName = favouriteAstroids[key].name;
@@ -102,11 +108,13 @@ export default class SearchAstroidDates extends React.Component {
             favouriteAstroidArray.push(elementsToPush);
         });
 
+        //Packaging username and astroids' details into an object to send to MongoDB Realm Webhook
         const favourites = {
             username: this.state.currentUser.displayName,
             favouriteAstroids: favouriteAstroidArray,
         };
 
+        //Webhook call to MongoDB Realm to add the astroids' to the user's favouriteAstroids array
         axios
             .post(
                 "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
@@ -123,6 +131,7 @@ export default class SearchAstroidDates extends React.Component {
             });
     }
 
+    //Index the rows that are selected in the devextream table
     onSelectionChanged({ selectedRowKeys, selectedRowsData }) {
         this.setState({
             selectedRowsData,
@@ -130,10 +139,12 @@ export default class SearchAstroidDates extends React.Component {
         });
     }
 
+    //Clear all selections in the devextream table
     onClearButtonClicked() {
         this.dataGrid.instance.clearSelection();
     }
 
+    //Wait for data to mount
     componentDidMount() {
         const apiKey = "8Y2qxegMmSkdHok4yoOjRm9HASPZpTgkQhwcZ6Aj";
         const startDate = this.props.match.params.startDate;
@@ -141,6 +152,7 @@ export default class SearchAstroidDates extends React.Component {
         this.fetchData(startDate, endDate, apiKey);
     }
 
+    //Fetch the data from the API using the required parameters
     async fetchData(startDate, endDate, apiKey) {
         const url =
             "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
@@ -159,7 +171,9 @@ export default class SearchAstroidDates extends React.Component {
         this.populateData();
     }
 
+    //Unpack received data to be displayed in a table
     populateData() {
+        //Nested foreach loop to retrieve necessary information
         Object.keys(astroidData).forEach(function (key) {
             astroidData[key].forEach(function (individualAstroid) {
                 day = key;
@@ -188,6 +202,7 @@ export default class SearchAstroidDates extends React.Component {
                 firstObservationDate =
                     individualAstroid.orbital_data.first_observation_date;
 
+                //Package elements into an array to be displayed into a table
                 let elementToPush = {
                     day: day,
                     id: id,
@@ -209,6 +224,7 @@ export default class SearchAstroidDates extends React.Component {
         this.setState({ loading: false });
     }
 
+    //UI for Search Astroids By Dates page
     render() {
         const { selectedRowKeys } = this.state;
 
@@ -242,6 +258,8 @@ export default class SearchAstroidDates extends React.Component {
                                 be selected and then added to favourites to be
                                 viewed on a later date.
                             </p>
+
+                            {/* Devextream tabel for displaying astroid information */}
                             <DataGrid
                                 id="id"
                                 className="mt-4"

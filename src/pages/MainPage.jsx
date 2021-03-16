@@ -1,3 +1,4 @@
+//Library Imports
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -11,11 +12,13 @@ function MainPage() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    //Reference for the search astroid input field
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {}, 3000);
         return () => clearTimeout(delayDebounceFn);
     }, [searchAstroid]);
 
+    //Format date from react-datepicker into YYYY-MM-DD format
     function formatDate(date) {
         const preformattedDate = new Date(date);
 
@@ -29,6 +32,7 @@ function MainPage() {
         return formattedDate;
     }
 
+    //UI for Main Page
     return (
         <div className="mt-4 mb-4">
             <center>
@@ -75,6 +79,7 @@ function MainPage() {
 
                 <label>Pick Start Date:</label>
 
+                {/* React Datepicker element for start date */}
                 <DatePicker
                     className="date-picker mb-2 "
                     data-bs-toggle="popover"
@@ -94,6 +99,7 @@ function MainPage() {
 
                 <label>Pick End Date:</label>
 
+                {/* React Datepicker element for end date */}
                 <DatePicker
                     className="date-picker"
                     data-bs-toggle="popover"

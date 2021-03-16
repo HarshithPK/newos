@@ -1,7 +1,9 @@
+// Library Imports
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+//Component Imports
 import { useAuth } from "../components/contexts/AuthContext";
 
 export default function DeleteAccount() {
@@ -10,16 +12,19 @@ export default function DeleteAccount() {
 
     const [deletingUser, setDeletingUser] = useState(false);
 
+    //Handle click for No
     function handleClickNo() {
         history.push("/");
     }
 
+    //Handle click for Yes
     function handleClickYes() {
         setDeletingUser(true);
         deleteUser();
         setDeletingUser(false);
     }
 
+    //UI for Delete Account page
     return (
         <center>
             <div className="delete-account-page">

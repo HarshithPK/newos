@@ -1,10 +1,13 @@
+// Library Imports
 import React, { useRef, useState } from "react";
 import { Card, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
+//Component Imports
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
+    //Reference variables for input fields (email and password)
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -14,6 +17,7 @@ export default function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    //Handle the request for Login
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -29,12 +33,15 @@ export default function Login() {
         setLoading(false);
     }
 
+    //UI for Login page
     return (
         <center>
             <div className="login mt-5 w-100">
                 <Card className="login-card">
                     <Card.Body>
                         <h2 className="login-text text-center mb-4">Login</h2>
+
+                        {/* Show error for failed login */}
                         {error && <Alert variant="danger">{error}</Alert>}
 
                         <Form onSubmit={handleSubmit}>

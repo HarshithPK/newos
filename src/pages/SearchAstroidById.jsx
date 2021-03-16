@@ -1,8 +1,10 @@
+//Library Imports
 import React from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import Button from "devextreme-react/button";
 
+//Component Imports
 import { auth } from "../components/auth/firebase";
 
 let favouriteAstroidArray = [];
@@ -11,6 +13,7 @@ export default class SearchAstroidById extends React.Component {
     constructor(props) {
         super(props);
 
+        //State Variables
         this.state = {
             astroidData: {},
             loading: true,
@@ -24,7 +27,9 @@ export default class SearchAstroidById extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    //Contact API for the data
     async componentDidMount() {
+        // Api Key
         const apiKey = "8Y2qxegMmSkdHok4yoOjRm9HASPZpTgkQhwcZ6Aj";
         const astroidId = this.props.match.params.astroidId;
         const url =
@@ -33,13 +38,17 @@ export default class SearchAstroidById extends React.Component {
             `?api_key=` +
             apiKey;
 
+        //Wait until server responds with the required data
         const response = await fetch(url);
+
+        //Convert the API response into JSON format
         const data = await response.json();
 
         this.setState({ astroidData: data });
         this.setState({ loading: false });
     }
 
+    //Dynamic Add to favourites button
     AlertDismissible() {
         return (
             <div className="mt2" style={{ maxWidth: "300px" }}>
@@ -71,6 +80,7 @@ export default class SearchAstroidById extends React.Component {
         );
     }
 
+    //Handle click to add astroid to favourites
     handleClick(event) {
         this.setState({ addingAstroidsLoading: true });
 
@@ -83,11 +93,13 @@ export default class SearchAstroidById extends React.Component {
 
         favouriteAstroidArray.push(elementsToPush);
 
+        //Packaging username and astroid details into an object to send to MongoDB Realm Webhook
         const favourites = {
             username: this.state.currentUser.displayName,
             favouriteAstroids: favouriteAstroidArray,
         };
 
+        //Webhook call to MongoDB Realm to add the astroid to the user's favouriteAstroids array
         axios
             .post(
                 "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
@@ -105,6 +117,7 @@ export default class SearchAstroidById extends React.Component {
             });
     }
 
+    //UI for Search Astroid by ID page
     render() {
         return (
             <center>
@@ -135,6 +148,8 @@ export default class SearchAstroidById extends React.Component {
                                     can be added to favourites to be viewed on a
                                     later date.
                                 </p>
+
+                                {/* Table that displays astroid details for given ID */}
                                 <table className="individual-astroid-table mt-3">
                                     <tbody className="ml-2 mr-2">
                                         <tr>

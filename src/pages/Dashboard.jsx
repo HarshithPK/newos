@@ -1,10 +1,11 @@
+// Library Imports
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Card, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 import axios from "axios";
-
 import DataGrid, { Column, Paging } from "devextreme-react/data-grid";
 
+//Component Imports
 import { useAuth } from "../components/contexts/AuthContext";
 
 //devexteme CSS
@@ -15,24 +16,25 @@ let favouriteAstroidArray = [];
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
 
-    const { currentUser, logout } = useAuth();
-
-    const history = useHistory();
+    const { currentUser } = useAuth();
 
     useEffect(() => {
         let favouriteAstroids = {};
 
+        //Retrieve Favourite Astroids from MongoDB database
         async function loadFavouriteAstroids() {
+            //Reterieve the user's username
             const username = currentUser.displayName;
 
+            //Create an object with the username to be sent to the MongoDB Realm webhook
             const user = {
                 username: username,
             };
 
             console.log(user);
 
+            //Webhook call to MongoDB Realm with the username object as a parameter to retreive the user's favourite astroids from Mongo Database
             await axios
                 .post(
                     "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/returnFavouriteAstroids",
@@ -45,19 +47,11 @@ export default function Dashboard() {
                     console.log(err);
                 });
 
-            console.log("Printing Favourite Astroids", favouriteAstroids);
-
+            //Unpack favourite astroids from the object of result from webhook
             Object.keys(favouriteAstroids).forEach(function (key) {
-                console.log(favouriteAstroids[key]);
                 const level1 = favouriteAstroids[key];
 
                 Object.keys(level1).forEach(function (key1) {
-                    console.log("Printing Level 1", level1[key1]);
-                    console.log(
-                        "Printing astroid name",
-                        level1[key1].astroidName
-                    );
-
                     const elementsToPush = {
                         astroidId: level1[key1].astroidId,
                         astroidName: level1[key1].astroidName,
@@ -67,11 +61,6 @@ export default function Dashboard() {
 
                     favouriteAstroidArray.push(elementsToPush);
                 });
-
-                console.log(
-                    "Printing Favourite Astroid Array ",
-                    favouriteAstroidArray
-                );
             });
 
             setLoading(false);
@@ -80,17 +69,7 @@ export default function Dashboard() {
         loadFavouriteAstroids();
     }, [currentUser]);
 
-    async function handleLogout() {
-        setError("");
-
-        try {
-            await logout();
-            history.push("/login");
-        } catch {
-            setError("Failed to log out.");
-        }
-    }
-
+    //UI for the Dashboard page
     return (
         <center>
             <div className="dashboard mt-5 mb-5">
@@ -112,9 +91,6 @@ export default function Dashboard() {
                                     <h2 className="profile-text text-center mb-4">
                                         Profile
                                     </h2>
-                                    {error && (
-                                        <Alert variant="danger">{error}</Alert>
-                                    )}
                                     <strong className="label-text">
                                         Username:
                                     </strong>{" "}
@@ -128,28 +104,21 @@ export default function Dashboard() {
                                     <Link
                                         to="/update-profile"
                                         className="btn btn-outline-primary w-72 mt-3">
-                                        Update Profile
+                                        Change Password
                                     </Link>
                                 </Card.Body>
 
                                 <div className="w-100 text-center mb-2">
                                     <Link
                                         to="/delete-account"
-                                        className="btn btn-outline-danger w-72 mt-3">
+                                        className="btn btn-outline-danger w-72 mt-2">
                                         Delete Account
                                     </Link>
-                                </div>
-
-                                <div className="w-100 text-center mb-2">
-                                    <button
-                                        className="btn btn-outline-danger"
-                                        onClick={handleLogout}>
-                                        Log Out
-                                    </button>
                                 </div>
                             </Card>
                         </div>
 
+                        {/* Devextreme grid to display favourite astroids */}
                         <DataGrid
                             className="mt-5"
                             id="astroidId"

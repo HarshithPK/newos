@@ -1,11 +1,14 @@
+//Library Imports
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Card, Form, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+//Component Imports
 import { useAuth } from "../components/contexts/AuthContext";
 
 export default function AddUsername() {
+    //Reference variable for input field (username)
     const usernameRef = useRef();
 
     const { currentUser, updateUsername } = useAuth();
@@ -14,6 +17,7 @@ export default function AddUsername() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    //Handle the request to Add Username
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -26,6 +30,7 @@ export default function AddUsername() {
             promises.push(updateUsername(usernameRef.current.value));
         }
 
+        //Webhook call to MongoDB Realm to add the user's username and an empty array called favouriteAstroids Mongo Database
         Promise.all(promises)
             .then(async () => {
                 const user = {
@@ -55,6 +60,7 @@ export default function AddUsername() {
             });
     }
 
+    //UI for Add Username page
     return (
         <center>
             <div className="add-username mt-5 w-100">
@@ -63,6 +69,8 @@ export default function AddUsername() {
                         <h2 className="add-username-text text-center mb-4">
                             Add Username
                         </h2>
+
+                        {/* Show error on failure to add username */}
                         {error && <Alert variant="danger">{error}</Alert>}
 
                         <Form onSubmit={handleSubmit}>

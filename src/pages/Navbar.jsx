@@ -1,12 +1,15 @@
+//Library Imports
 import React from "react";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 
+//Component Imports
 import { useAuth } from "../components/contexts/AuthContext";
 
 export default function Navbar() {
     const { currentUser, logout } = useAuth();
     const history = useHistory();
 
+    //Handle Logout request
     async function handleLogout() {
         try {
             await logout();
@@ -16,6 +19,7 @@ export default function Navbar() {
         }
     }
 
+    //UI for Navbar
     return (
         <Router>
             <div>

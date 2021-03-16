@@ -1,3 +1,4 @@
+// Library Imports
 import React from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -25,6 +26,7 @@ function App() {
         <div className="App">
             <Container>
                 <div className="app-body">
+                    {/* Routes for pages */}
                     <Router>
                         <AuthProvider>
                             <Switch>
