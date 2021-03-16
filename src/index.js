@@ -1,6 +1,8 @@
+//Library Imports
 import React from "react";
 import ReactDOM from "react-dom";
 
+//Component Imports
 import App from "./components/App";
 import AuthProvider from "./components/contexts/AuthContext";
 
