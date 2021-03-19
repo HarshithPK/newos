@@ -8,7 +8,7 @@ import addDays from "date-fns/addDays";
 import "react-datepicker/dist/react-datepicker.css";
 
 function MainPage() {
-    const [searchAstroid, setSearchAstroid] = useState("");
+    const [searchAsteroid, setSearchAsteroid] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
@@ -16,7 +16,7 @@ function MainPage() {
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {}, 3000);
         return () => clearTimeout(delayDebounceFn);
-    }, [searchAstroid]);
+    }, [searchAsteroid]);
 
     //Format date from react-datepicker into YYYY-MM-DD format
     function formatDate(date) {
@@ -72,9 +72,9 @@ function MainPage() {
                     based on their closest approach date to Earth. It takes two
                     arguments the start date and an end date in the format
                     YYYY-MM-DD. The max range of the query is 7 days not
-                    including the start date. The query returns data of astroids
-                    by their approach date to earth within the given range of
-                    dates.
+                    including the start date. The query returns data of
+                    asteroids by their approach date to earth within the given
+                    range of dates.
                 </p>
 
                 <label>Pick Start Date:</label>
@@ -148,13 +148,13 @@ function MainPage() {
                     data-bs-toggle="popover"
                     data-bs-trigger="focus"
                     title="Enter Asteroid Id"
-                    onChange={(e) => setSearchAstroid(e.target.value)}
+                    onChange={(e) => setSearchAsteroid(e.target.value)}
                     type="text"
                     placeholder="Asteroid Id"
                 />
                 <br></br>
                 <Link
-                    to={`/search-asteroid-id/${searchAstroid}`}
+                    to={`/search-asteroid-id/${searchAsteroid}`}
                     className="btn btn-success btn-sm mt-2 mb-2">
                     Search
                 </Link>

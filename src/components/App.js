@@ -13,8 +13,8 @@ import Signup from "./auth/Signup";
 import ForgotPassword from "./auth/ForgotPassword";
 
 import MainPage from "../pages/MainPage";
-import SearchAstroidById from "../pages/SearchAstroidById";
-import SearchAstroidsByDates from "../pages/SearchAstroidsByDates";
+import SearchAsteroidById from "../pages/SearchAsteroidById";
+import SearchAsteroidsByDates from "../pages/SearchAsteroidsByDates";
 import AddUsername from "../pages/AddUserame";
 import Navbar from "../pages/Navbar";
 import Dashboard from "../pages/Dashboard";
@@ -42,13 +42,13 @@ function App() {
                                 />
                                 <PrivateRoute
                                     exact
-                                    path="/search-asteroid-id/:astroidId"
-                                    component={SearchAstroidById}
+                                    path="/search-asteroid-id/:asteroidId"
+                                    component={SearchAsteroidById}
                                 />
                                 <PrivateRoute
                                     exact
                                     path="/search-asteroid-dates/:startDate&:endDate"
-                                    component={SearchAstroidsByDates}
+                                    component={SearchAsteroidsByDates}
                                 />
                                 ;
                                 <PrivateRoute

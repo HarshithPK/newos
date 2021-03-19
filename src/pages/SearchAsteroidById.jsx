@@ -7,17 +7,17 @@ import Button from "devextreme-react/button";
 //Component Imports
 import { auth } from "../components/auth/firebase";
 
-let favouriteAstroidArray = [];
+let favouriteAsteroidArray = [];
 
-export default class SearchAstroidById extends React.Component {
+export default class SearchAsteroidById extends React.Component {
     constructor(props) {
         super(props);
 
         //State Variables
         this.state = {
-            astroidData: {},
+            asteroidData: {},
             loading: true,
-            addingAstroidsLoading: false,
+            addingAsteroidsLoading: false,
             currentUser: auth.currentUser,
             message: "",
             show: false,
@@ -31,10 +31,10 @@ export default class SearchAstroidById extends React.Component {
     async componentDidMount() {
         // Api Key
         const apiKey = "8Y2qxegMmSkdHok4yoOjRm9HASPZpTgkQhwcZ6Aj";
-        const astroidId = this.props.match.params.astroidId;
+        const asteroidId = this.props.match.params.asteroidId;
         const url =
             `https://api.nasa.gov/neo/rest/v1/neo/` +
-            astroidId +
+            asteroidId +
             `?api_key=` +
             apiKey;
 
@@ -44,7 +44,7 @@ export default class SearchAstroidById extends React.Component {
         //Convert the API response into JSON format
         const data = await response.json();
 
-        this.setState({ astroidData: data });
+        this.setState({ asteroidData: data });
         this.setState({ loading: false });
     }
 
@@ -71,7 +71,7 @@ export default class SearchAstroidById extends React.Component {
                     <Button
                         className="btn btn-primary align-middle mt-3 mb-4"
                         onClick={this.handleClick}>
-                        {this.state.addingAstroidsLoading
+                        {this.state.addingAsteroidsLoading
                             ? "Loading..."
                             : "Add to Favourites"}
                     </Button>
@@ -82,24 +82,24 @@ export default class SearchAstroidById extends React.Component {
 
     //Handle click to add asteroid to favourites
     handleClick(event) {
-        this.setState({ addingAstroidsLoading: true });
+        this.setState({ addingAsteroidsLoading: true });
 
         let elementsToPush = {
-            astroidId: this.state.astroidData.id,
-            astroidName: this.state.astroidData.name,
-            orbitalDeterminationDate: this.state.astroidData.orbital_data
+            asteroidId: this.state.asteroidData.id,
+            asteroidName: this.state.asteroidData.name,
+            orbitalDeterminationDate: this.state.asteroidData.orbital_data
                 .orbit_determination_date,
         };
 
-        favouriteAstroidArray.push(elementsToPush);
+        favouriteAsteroidArray.push(elementsToPush);
 
         //Packaging username and asteroid details into an object to send to MongoDB Realm Webhook
         const favourites = {
             username: this.state.currentUser.displayName,
-            favouriteAstroids: favouriteAstroidArray,
+            favouriteAsteroids: favouriteAsteroidArray,
         };
 
-        //Webhook call to MongoDB Realm to add the asteroid to the user's favouriteAstroids array
+        //Webhook call to MongoDB Realm to add the asteroid to the user's favouriteAsteroids array
         axios
             .post(
                 "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
@@ -108,7 +108,7 @@ export default class SearchAstroidById extends React.Component {
             .then((res) => {
                 this.setState({ message: "Asteroid(s) added to favourites." });
                 this.setState({ show: true });
-                this.setState({ addingAstroidsLoading: false });
+                this.setState({ addingAsteroidsLoading: false });
 
                 this.onClearButtonClicked();
             })
@@ -138,15 +138,17 @@ export default class SearchAstroidById extends React.Component {
                                 <p className="neo-lookup-description-text mt-4 ml-4 mr-4">
                                     The below table shows the details of the
                                     asteroid with the Asteroid Id{" "}
-                                    <strong>{this.state.astroidData.id}</strong>{" "}
+                                    <strong>
+                                        {this.state.asteroidData.id}
+                                    </strong>{" "}
                                     and
                                     <strong>
                                         {this.props.match.params.endDate}
                                     </strong>
-                                    . The astroids are ordered based on their
-                                    closest approach date to earth. The astroids
-                                    can be added to favourites to be viewed on a
-                                    later date.
+                                    . The asteroids are ordered based on their
+                                    closest approach date to earth. The
+                                    asteroids can be added to favourites to be
+                                    viewed on a later date.
                                 </p>
 
                                 {/* Table that displays asteroid details for given ID */}
@@ -154,13 +156,15 @@ export default class SearchAstroidById extends React.Component {
                                     <tbody className="ml-2 mr-2">
                                         <tr>
                                             <th>Asteroid ID</th>
-                                            <td>{this.state.astroidData.id}</td>
+                                            <td>
+                                                {this.state.asteroidData.id}
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <th>Name</th>
                                             <td>
-                                                {this.state.astroidData.name}
+                                                {this.state.asteroidData.name}
                                             </td>
                                         </tr>
 
@@ -168,7 +172,7 @@ export default class SearchAstroidById extends React.Component {
                                             <th>Orbit ID</th>
                                             <td>
                                                 {
-                                                    this.state.astroidData
+                                                    this.state.asteroidData
                                                         .orbital_data.orbit_id
                                                 }
                                             </td>
@@ -178,7 +182,7 @@ export default class SearchAstroidById extends React.Component {
                                             <th>Diameter (Kms)</th>
                                             <td>
                                                 {
-                                                    this.state.astroidData
+                                                    this.state.asteroidData
                                                         .estimated_diameter
                                                         .kilometers
                                                         .estimated_diameter_max
@@ -190,7 +194,7 @@ export default class SearchAstroidById extends React.Component {
                                             <th>First Observation Date</th>
                                             <td>
                                                 {
-                                                    this.state.astroidData
+                                                    this.state.asteroidData
                                                         .orbital_data
                                                         .first_observation_date
                                                 }
@@ -201,7 +205,7 @@ export default class SearchAstroidById extends React.Component {
                                             <th>Orbital Determination date</th>
                                             <td>
                                                 {
-                                                    this.state.astroidData
+                                                    this.state.asteroidData
                                                         .orbital_data
                                                         .orbit_determination_date
                                                 }
@@ -211,7 +215,7 @@ export default class SearchAstroidById extends React.Component {
                                         <tr>
                                             <th>Inclination</th>
                                             <td>
-                                                {this.state.astroidData.orbital_data.inclination.substring(
+                                                {this.state.asteroidData.orbital_data.inclination.substring(
                                                     0,
                                                     7
                                                 )}
@@ -221,7 +225,7 @@ export default class SearchAstroidById extends React.Component {
                                         <tr>
                                             <th>Orbital Period</th>
                                             <td>
-                                                {this.state.astroidData.orbital_data.orbital_period.substring(
+                                                {this.state.asteroidData.orbital_data.orbital_period.substring(
                                                     0,
                                                     7
                                                 )}
