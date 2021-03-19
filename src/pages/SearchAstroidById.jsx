@@ -55,7 +55,7 @@ export default class SearchAstroidById extends React.Component {
                 <Alert show={this.state.show} variant="success">
                     <Alert.Heading>Success!!</Alert.Heading>
 
-                    <p>Astroid(s) added to favourites.</p>
+                    <p>Asteroid(s) added to favourites.</p>
                     <hr />
 
                     <div className="d-flex justify-content-end">
@@ -80,7 +80,7 @@ export default class SearchAstroidById extends React.Component {
         );
     }
 
-    //Handle click to add astroid to favourites
+    //Handle click to add asteroid to favourites
     handleClick(event) {
         this.setState({ addingAstroidsLoading: true });
 
@@ -93,20 +93,20 @@ export default class SearchAstroidById extends React.Component {
 
         favouriteAstroidArray.push(elementsToPush);
 
-        //Packaging username and astroid details into an object to send to MongoDB Realm Webhook
+        //Packaging username and asteroid details into an object to send to MongoDB Realm Webhook
         const favourites = {
             username: this.state.currentUser.displayName,
             favouriteAstroids: favouriteAstroidArray,
         };
 
-        //Webhook call to MongoDB Realm to add the astroid to the user's favouriteAstroids array
+        //Webhook call to MongoDB Realm to add the asteroid to the user's favouriteAstroids array
         axios
             .post(
                 "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/addAstroid",
                 favourites
             )
             .then((res) => {
-                this.setState({ message: "Astroid(s) added to favourites." });
+                this.setState({ message: "Asteroid(s) added to favourites." });
                 this.setState({ show: true });
                 this.setState({ addingAstroidsLoading: false });
 
@@ -117,7 +117,7 @@ export default class SearchAstroidById extends React.Component {
             });
     }
 
-    //UI for Search Astroid by ID page
+    //UI for Search Asteroid by ID page
     render() {
         return (
             <center>
@@ -133,11 +133,11 @@ export default class SearchAstroidById extends React.Component {
                             </div>
                         </div>
                     ) : (
-                        <div className="individual-astroid-data-text">
+                        <div className="individual-asteroid-data-text">
                             <center>
                                 <p className="neo-lookup-description-text mt-4 ml-4 mr-4">
                                     The below table shows the details of the
-                                    astroid with the Astroid Id{" "}
+                                    asteroid with the Asteroid Id{" "}
                                     <strong>{this.state.astroidData.id}</strong>{" "}
                                     and
                                     <strong>
@@ -149,11 +149,11 @@ export default class SearchAstroidById extends React.Component {
                                     later date.
                                 </p>
 
-                                {/* Table that displays astroid details for given ID */}
-                                <table className="individual-astroid-table mt-3">
+                                {/* Table that displays asteroid details for given ID */}
+                                <table className="individual-asteroid-table mt-3">
                                     <tbody className="ml-2 mr-2">
                                         <tr>
-                                            <th>Astroid ID</th>
+                                            <th>Asteroid ID</th>
                                             <td>{this.state.astroidData.id}</td>
                                         </tr>
 

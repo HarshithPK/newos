@@ -12,7 +12,7 @@ function MainPage() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    //Reference for the search astroid input field
+    //Reference for the search asteroid input field
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {}, 3000);
         return () => clearTimeout(delayDebounceFn);
@@ -118,7 +118,7 @@ function MainPage() {
                 />
 
                 <Link
-                    to={`/search-astroid-dates/${formatDate(
+                    to={`/search-asteroid-dates/${formatDate(
                         startDate
                     )}&${formatDate(endDate)}`}>
                     <button
@@ -139,22 +139,22 @@ function MainPage() {
                     Neo-Lookup is a RESTful web service for near earth Asteroid
                     information. With NeoWs a user can search for an Asteroid
                     using the NASA JPL small body (SPK-ID) ID. The query returns
-                    data on the astroid whose SPK-ID is provided.
+                    data on the asteroid whose SPK-ID is provided.
                 </p>
-                <label>Enter Astroid Id:</label> <br></br>
+                <label>Enter Asteroid Id:</label> <br></br>
                 <input
-                    className="astroid-id-text mt-1 mr-2"
-                    id="astroid"
+                    className="asteroid-id-text mt-1 mr-2"
+                    id="asteroid"
                     data-bs-toggle="popover"
                     data-bs-trigger="focus"
-                    title="Enter Astroid Id"
+                    title="Enter Asteroid Id"
                     onChange={(e) => setSearchAstroid(e.target.value)}
                     type="text"
-                    placeholder="Astroid Id"
+                    placeholder="Asteroid Id"
                 />
                 <br></br>
                 <Link
-                    to={`/search-astroid-id/${searchAstroid}`}
+                    to={`/search-asteroid-id/${searchAstroid}`}
                     className="btn btn-success btn-sm mt-2 mb-2">
                     Search
                 </Link>

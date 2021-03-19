@@ -42,12 +42,12 @@ function App() {
                                 />
                                 <PrivateRoute
                                     exact
-                                    path="/search-astroid-id/:astroidId"
+                                    path="/search-asteroid-id/:astroidId"
                                     component={SearchAstroidById}
                                 />
                                 <PrivateRoute
                                     exact
-                                    path="/search-astroid-dates/:startDate&:endDate"
+                                    path="/search-asteroid-dates/:startDate&:endDate"
                                     component={SearchAstroidsByDates}
                                 />
                                 ;

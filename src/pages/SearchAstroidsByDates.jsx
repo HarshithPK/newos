@@ -61,7 +61,7 @@ export default class SearchAstroidDates extends React.Component {
                 <Alert show={this.state.show} variant="success">
                     <Alert.Heading>Success!!</Alert.Heading>
 
-                    <p>Astroid(s) added to favourites.</p>
+                    <p>Asteroid(s) added to favourites.</p>
                     <hr />
 
                     <div className="d-flex justify-content-end">
@@ -121,7 +121,7 @@ export default class SearchAstroidDates extends React.Component {
                 favourites
             )
             .then((res) => {
-                this.setState({ message: "Astroid(s) added to favourites." });
+                this.setState({ message: "Asteroid(s) added to favourites." });
                 this.setState({ show: true });
                 this.setState({ addingAstroidsLoading: false });
                 this.onClearButtonClicked();
@@ -259,7 +259,7 @@ export default class SearchAstroidDates extends React.Component {
                                 viewed on a later date.
                             </p>
 
-                            {/* Devextream tabel for displaying astroid information */}
+                            {/* Devextream tabel for displaying asteroid information */}
                             <DataGrid
                                 id="id"
                                 className="mt-4"
@@ -296,31 +296,31 @@ export default class SearchAstroidDates extends React.Component {
 
                                 <Column
                                     dataField="id"
-                                    caption="Astroid Id"
+                                    caption="Asteroid Id"
                                     alignment="center"
                                 />
 
                                 <Column
                                     dataField="name"
-                                    caption="Astroid Name"
+                                    caption="Asteroid Name"
                                     alignment="center"
                                 />
 
                                 <Column
                                     dataField="diameter"
-                                    caption="Astroid Diameter (Kms)"
+                                    caption="Asteroid Diameter (Kms)"
                                     alignment="center"
                                 />
 
                                 <Column
                                     dataField="velocity"
-                                    caption="Astroid Velocity (Kph)"
+                                    caption="Asteroid Velocity (Kph)"
                                     alignment="center"
                                 />
 
                                 <Column
                                     dataField="missDistance"
-                                    caption="Astroid Miss-Distance (Kms)"
+                                    caption="Asteroid Miss-Distance (Kms)"
                                     alignment="center"
                                 />
 
@@ -332,7 +332,7 @@ export default class SearchAstroidDates extends React.Component {
 
                                 <Column
                                     dataField="inclination"
-                                    caption="Astroid Inclination"
+                                    caption="Asteroid Inclination"
                                     alignment="center"
                                 />
                             </DataGrid>

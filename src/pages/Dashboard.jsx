@@ -140,13 +140,13 @@ export default function Dashboard() {
 
                             <Column
                                 dataField="astroidId"
-                                caption="Astroid Id"
+                                caption="Asteroid Id"
                                 alignment="center"
                             />
 
                             <Column
                                 dataField="astroidName"
-                                caption="Astroid Name"
+                                caption="Asteroid Name"
                                 alignment="center"
                             />
                         </DataGrid>
