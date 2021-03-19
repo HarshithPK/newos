@@ -12,7 +12,7 @@ import { useAuth } from "../components/contexts/AuthContext";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.material.blue.dark.css";
 
-let favouriteAsteroidArray = [];
+let favouriteAstroidArray = [];
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(true);
@@ -20,10 +20,10 @@ export default function Dashboard() {
     const { currentUser } = useAuth();
 
     useEffect(() => {
-        let favouriteAsteroids = {};
+        let favouriteAstroids = {};
 
         //Retrieve Favourite Asteroids from MongoDB database
-        async function loadFavouriteAsteroids() {
+        async function loadFavouriteAstroids() {
             //Reterieve the user's username
             const username = currentUser.displayName;
 
@@ -34,39 +34,39 @@ export default function Dashboard() {
 
             console.log(user);
 
-            //Webhook call to MongoDB Realm with the username object as a parameter to retreive the user's favourite asteroids from Mongo Database
+            //Webhook call to MongoDB Realm with the username object as a parameter to retreive the user's favourite astroids from Mongo Database
             await axios
                 .post(
                     "https://webhooks.mongodb-realm.com/api/client/v2.0/app/newos-ytvpv/service/newos-users/incoming_webhook/returnFavouriteAstroids",
                     user
                 )
                 .then((res) => {
-                    favouriteAsteroids = res.data[0].favouriteAsteroids;
+                    favouriteAstroids = res.data[0].favouriteAstroids;
                 })
                 .catch((err) => {
                     console.log(err);
                 });
 
             //Unpack favourite asteroids from the object of result from webhook
-            Object.keys(favouriteAsteroids).forEach(function (key) {
-                const level1 = favouriteAsteroids[key];
+            Object.keys(favouriteAstroids).forEach(function (key) {
+                const level1 = favouriteAstroids[key];
 
                 Object.keys(level1).forEach(function (key1) {
                     const elementsToPush = {
-                        asteroidId: level1[key1].asteroidId,
-                        asteroidName: level1[key1].asteroidName,
+                        astroidId: level1[key1].astroidId,
+                        astroidName: level1[key1].astroidName,
                         orbitalDeterminationDate:
                             level1[key1].orbitalDeterminationDate,
                     };
 
-                    favouriteAsteroidArray.push(elementsToPush);
+                    favouriteAstroidArray.push(elementsToPush);
                 });
             });
 
             setLoading(false);
         }
 
-        loadFavouriteAsteroids();
+        loadFavouriteAstroids();
     }, [currentUser]);
 
     //UI for the Dashboard page
@@ -121,10 +121,10 @@ export default function Dashboard() {
                         {/* Devextreme grid to display favourite asteroids */}
                         <DataGrid
                             className="mt-5"
-                            id="asteroidId"
-                            dataSource={favouriteAsteroidArray}
+                            id="astroidId"
+                            dataSource={favouriteAstroidArray}
                             showBorders={true}
-                            keyExpr="asteroidId"
+                            keyExpr="astroidId"
                             wordWrapEnabled={true}
                             rowAlternationEnabled={true}
                             showColumnLines={true}>
@@ -139,13 +139,13 @@ export default function Dashboard() {
                             />
 
                             <Column
-                                dataField="asteroidId"
+                                dataField="astroidId"
                                 caption="Asteroid Id"
                                 alignment="center"
                             />
 
                             <Column
-                                dataField="asteroidName"
+                                dataField="astroidName"
                                 caption="Asteroid Name"
                                 alignment="center"
                             />

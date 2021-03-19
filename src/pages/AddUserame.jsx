@@ -30,12 +30,12 @@ export default function AddUsername() {
             promises.push(updateUsername(usernameRef.current.value));
         }
 
-        //Webhook call to MongoDB Realm to add the user's username and an empty array called favouriteAsteroids Mongo Database
+        //Webhook call to MongoDB Realm to add the user's username and an empty array called favouriteAstroids Mongo Database
         Promise.all(promises)
             .then(async () => {
                 const user = {
                     username: currentUser.displayName,
-                    favouriteAsteroids: [],
+                    favouriteAstroids: [],
                 };
 
                 axios

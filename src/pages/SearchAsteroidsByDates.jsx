@@ -16,7 +16,7 @@ import { auth } from "../components/auth/firebase";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.material.blue.dark.css";
 
-let asteroidData;
+let astroidData;
 let day,
     id,
     name,
@@ -28,8 +28,8 @@ let day,
     orbitalPeriod,
     inclination,
     firstObservationDate;
-let asteroidArray = [];
-let favouriteAsteroidArray = [];
+let astroidArray = [];
+let favouriteAstroidArray = [];
 
 export default class SearchAsteroidDates extends React.Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export default class SearchAsteroidDates extends React.Component {
         //State variables
         this.state = {
             loading: true,
-            addingAsteroidsLoading: false,
+            addingAstroidsLoading: false,
             selectedRowKeys: [],
             selectedRowsData: {},
             currentUser: auth.currentUser,
@@ -77,7 +77,7 @@ export default class SearchAsteroidDates extends React.Component {
                     <Button
                         className="btn btn-primary align-middle mt-2"
                         onClick={this.handleClick}>
-                        {this.state.addingAsteroidsLoading
+                        {this.state.addingAstroidsLoading
                             ? "Loading..."
                             : "Add to Favourites"}
                     </Button>
@@ -88,30 +88,30 @@ export default class SearchAsteroidDates extends React.Component {
 
     //Handle click to add asteroids to favourites
     handleClick(event) {
-        this.setState({ addingAsteroidsLoading: true });
+        this.setState({ addingAstroidsLoading: true });
 
-        const favouriteAsteroids = this.state.selectedRowsData;
+        const favouriteAstroids = this.state.selectedRowsData;
 
         //Preparing asteroids' data to be added to favourites
-        Object.keys(favouriteAsteroids).forEach(function (key) {
-            let asteroidId = favouriteAsteroids[key].id;
-            let asteroidName = favouriteAsteroids[key].name;
+        Object.keys(favouriteAstroids).forEach(function (key) {
+            let astroidId = favouriteAstroids[key].id;
+            let astroidName = favouriteAstroids[key].name;
             let orbitalDeterminationDate =
-                favouriteAsteroids[key].orbitalDeterminationDate;
+                favouriteAstroids[key].orbitalDeterminationDate;
 
             let elementsToPush = {
-                asteroidId: asteroidId,
-                asteroidName: asteroidName,
+                astroidId: astroidId,
+                astroidName: astroidName,
                 orbitalDeterminationDate: orbitalDeterminationDate,
             };
 
-            favouriteAsteroidArray.push(elementsToPush);
+            favouriteAstroidArray.push(elementsToPush);
         });
 
         //Packaging username and asteroids' details into an object to send to MongoDB Realm Webhook
         const favourites = {
             username: this.state.currentUser.displayName,
-            favouriteAsteroids: favouriteAsteroidArray,
+            favouriteAstroids: favouriteAstroidArray,
         };
 
         //Webhook call to MongoDB Realm to add the asteroids' to the user's favouriteAsteroids array
@@ -123,7 +123,7 @@ export default class SearchAsteroidDates extends React.Component {
             .then((res) => {
                 this.setState({ message: "Asteroid(s) added to favourites." });
                 this.setState({ show: true });
-                this.setState({ addingAsteroidsLoading: false });
+                this.setState({ addingAstroidsLoading: false });
                 this.onClearButtonClicked();
             })
             .catch((err) => {
@@ -166,7 +166,7 @@ export default class SearchAsteroidDates extends React.Component {
         const response = await fetch(url);
         const data = await response.json();
 
-        asteroidData = data.near_earth_objects;
+        astroidData = data.near_earth_objects;
 
         this.populateData();
     }
@@ -174,33 +174,33 @@ export default class SearchAsteroidDates extends React.Component {
     //Unpack received data to be displayed in a table
     populateData() {
         //Nested foreach loop to retrieve necessary information
-        Object.keys(asteroidData).forEach(function (key) {
-            asteroidData[key].forEach(function (individualAsteroid) {
+        Object.keys(astroidData).forEach(function (key) {
+            astroidData[key].forEach(function (individualAstroid) {
                 day = key;
-                id = individualAsteroid.id;
-                name = individualAsteroid.name;
-                diameter = individualAsteroid.estimated_diameter.kilometers.estimated_diameter_max
+                id = individualAstroid.id;
+                name = individualAstroid.name;
+                diameter = individualAstroid.estimated_diameter.kilometers.estimated_diameter_max
                     .toString()
                     .substring(0, 7);
-                velocity = individualAsteroid.close_approach_data[0].relative_velocity.kilometers_per_hour
+                velocity = individualAstroid.close_approach_data[0].relative_velocity.kilometers_per_hour
                     .toString()
                     .substring(0, 9);
                 approachDate =
-                    individualAsteroid.close_approach_data[0]
+                    individualAstroid.close_approach_data[0]
                         .close_approach_date;
                 orbitalDeterminationDate =
-                    individualAsteroid.orbital_data.orbit_determination_date;
-                missDistance = individualAsteroid.close_approach_data[0].miss_distance.kilometers
+                    individualAstroid.orbital_data.orbit_determination_date;
+                missDistance = individualAstroid.close_approach_data[0].miss_distance.kilometers
                     .toString()
                     .substring(0, 7);
-                orbitalPeriod = individualAsteroid.orbital_data.orbital_period
+                orbitalPeriod = individualAstroid.orbital_data.orbital_period
                     .toString()
                     .substring(0, 7);
-                inclination = individualAsteroid.orbital_data.inclination
+                inclination = individualAstroid.orbital_data.inclination
                     .toString()
                     .substring(0, 7);
                 firstObservationDate =
-                    individualAsteroid.orbital_data.first_observation_date;
+                    individualAstroid.orbital_data.first_observation_date;
 
                 //Package elements into an array to be displayed into a table
                 let elementToPush = {
@@ -217,7 +217,7 @@ export default class SearchAsteroidDates extends React.Component {
                     firstObservationDate: firstObservationDate,
                 };
 
-                asteroidArray.push(elementToPush);
+                astroidArray.push(elementToPush);
             });
         });
 
@@ -263,7 +263,7 @@ export default class SearchAsteroidDates extends React.Component {
                             <DataGrid
                                 id="id"
                                 className="mt-4"
-                                dataSource={asteroidArray}
+                                dataSource={astroidArray}
                                 showBorders={true}
                                 keyExpr="id"
                                 onSelectionChanged={this.onSelectionChanged}
